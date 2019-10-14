@@ -1,0 +1,2 @@
+// export const defaultStockTickers = [ 'A', 'AA', 'AAC', 'AADR', 'AAL', 'AAMC', 'AAME', 'AAN', 'AAOI', 'AAON' ];
+export const defaultStockTickers = ['IBM','KO','AXP','Facebook','Twitter','AAPL','Netflix','Amazon','AT&T','MSFT'];

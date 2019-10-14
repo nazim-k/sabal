@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FlexColumn, Table, LinkWrapper } from '../Styled';
+import { FlexColumn, Table, LinkWrapper, TextSkeleton } from '../Styled';
+import ErrorMessage from '../ErrorMessage';
 
 const CardsContainer = styled(FlexColumn)`
   min-width: 120px;
@@ -14,22 +15,39 @@ const CardTitle = styled.p`
   text-align: center;
 `;
 
-function Card({ security, open, high, low }) {
+function CardBody({ name, ticker, open, high, low, isLoading }) {
+  const Title = isLoading
+    ? <TextSkeleton key="title" height="25px"/>
+    :<CardTitle key="title" >{ name }</CardTitle>;
 
+  return [
+    Title,
+    <Table
+      key="table"
+      rows={ [
+        [ 'Ticker', ticker ],
+        [ 'Open', open ],
+        [ 'High', high ],
+        [ 'Low', low ],
+      ]}
+      padding="3px 2px"
+      hover={ false }
+      isLoading={ isLoading }
+    />
+  ]
+
+}
+
+function Card(props) {
+  const { ticker, error } = props;
   return <CardsContainer bg="#fff" width="18%" height="35%" around center>
-    <LinkWrapper to={ `/companies/${ security.ticker }` }>
-      <FlexColumn around center>
-        <CardTitle>{ security.name }</CardTitle>
-        <Table
-          rows={ [
-            [ 'Ticker', security.ticker ],
-            [ 'Open', open ],
-            [ 'High', high ],
-            [ 'Low', low ],
-          ]}
-          padding="3px 2px"
-          hover={ false }
-        />
+    <LinkWrapper to={ `/companies/${ ticker }` }>
+      <FlexColumn evenly center>
+        {
+          error
+            ? <ErrorMessage error={ error } top info={ `try to request ${ ticker }` }/>
+            : <CardBody { ...props }/>
+        }
       </FlexColumn>
     </LinkWrapper>
   </CardsContainer>

@@ -1,3 +1,5 @@
+import React from 'react';
+import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import StyledTable from './Table';
@@ -72,12 +74,26 @@ export const Paragraph = styled.p`
     if (props.light) return '#f7fafc';
     if (props.green) return '#4db74d';
     if (props.gray) return '#6a6a6a';
+    if (props.red) return '#e53e3e';
     if (props.color) return props.color;
     return '#1a202c'
   }};
   padding: ${ props => props.padding };
   margin: ${ props => props.margin };  
 `;
+
+const SkeletonDiv = styled.div`
+  width: ${ props => props.width || '80%' };
+  height: ${ props => props.height || 'auto' };
+`;
+
+export function TextSkeleton({ divHeight, ...props }) {
+
+  return <SkeletonDiv height={ divHeight }>
+    <Skeleton { ...props }/>
+  </SkeletonDiv>
+
+}
 
 
 

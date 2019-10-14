@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import {withRouter} from "react-router-dom";
+import { TextSkeleton } from './index'
+import { withRouter } from "react-router-dom";
 
 const StyledTable = styled.table`
   width: 100%;
@@ -25,14 +26,14 @@ const StyledTd = styled.td`
   border-bottom: 1px solid rgb(229, 229, 229);
 `;
 
-function Table({ headers, rows, links, padding, hover=true, history }) {
+function Table({ headers, rows, links, padding, hover=true, history, isLoading=false }) {
 
   //TODO: find better way to link table row to company ticker;
 
   function handleRowClick (ticker) {
     if (hover) history.push(`/companies/${ticker}`);
   }
-
+  if (isLoading) return rows.map( (row, index) => <TextSkeleton key={ index }/> );
   return <StyledTable>
     {
       headers && <thead>
@@ -42,13 +43,13 @@ function Table({ headers, rows, links, padding, hover=true, history }) {
       </thead>
     }
     <tbody>
-    {
-      rows.map( (row, index)=> (
-        <StyledTr key={ index } hover={ hover } onClick={ () => links && handleRowClick( links[index] ) }>
-          { row.map( (d, index) => ( <StyledTd key={ index } left={ !index } padding={ padding }>{ d }</StyledTd> ))}
-        </StyledTr>
-      ))
-    }
+      {
+        rows.map( (row, index)=> (
+          <StyledTr key={ index } hover={ hover } onClick={ () => links && handleRowClick( links[index] ) }>
+            { row.map( (d, index) => ( <StyledTd key={ index } left={ !index } padding={ padding }>{ d }</StyledTd> ))}
+          </StyledTr>
+        ))
+      }
     </tbody>
   </StyledTable>
 

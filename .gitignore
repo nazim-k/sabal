@@ -6,6 +6,9 @@
 .pnp.js
 .idea/
 
+# secret files
+src/API_KEY.js
+
 # testing
 /coverage
 
