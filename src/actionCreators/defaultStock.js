@@ -14,12 +14,14 @@ const loadDefaultStock = ticker => dispatch => {
       }),
       error => dispatch({
         type: LOAD_DEFAULT_STOCK_FAILURE,
-        message: error.message
+        message: error
       })
     )
 
 };
 
-export default {
+const objectFullOfActionCreatorsForMapDispatch = {
   loadDefaultStock
-}
+};
+
+export default objectFullOfActionCreatorsForMapDispatch

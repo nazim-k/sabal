@@ -1,7 +1,7 @@
 import React from 'react';
-import { FlexColumn, Paragraph } from '../Styled';
+import { FlexColumn, Paragraph } from '../CommonStyled';
 
-function ErrorMessage({ error={ status: 450}, info, ...flexProps }) {
+function ErrorMessage({ error, info, ...flexProps }) {
   let message;
   switch (error.status) {
     case 401:
@@ -31,5 +31,9 @@ function ErrorMessage({ error={ status: 450}, info, ...flexProps }) {
     <Paragraph gray>{ info }</Paragraph>
   </FlexColumn>
 }
+
+ErrorMessage.defaultProps = {
+  error: { status: 450 }
+};
 
 export default ErrorMessage;

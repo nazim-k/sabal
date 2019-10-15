@@ -9,7 +9,7 @@ export const Summany = styled.p`
   margin: 0;
 `;
 
-export const PublicationDate = styled.p`
+export const PublicationDate = styled.time`
   text-align: right;
   font-size: .8em;
   margin-top: 5px;

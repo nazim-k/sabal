@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import { Headline, Summany, PublicationDate, NewsContainer } from './Styled'
+import { Headline, Summany, PublicationDate, NewsContainer } from './Styled';
+import { FlexRow } from '../../CommonStyled';
 
 const index = [
   {
@@ -79,9 +80,13 @@ function News() {
 
   return index.map( (n, index) => (
     <NewsContainer key={ index } href={ n.url }>
-      <Headline>{ n.title }</Headline>
-      <Summany>{ n.summary }</Summany>
-      <PublicationDate>{ moment(n.publication_date).format("MMM Do YY") }</PublicationDate>
+      <article>
+        <Headline>{ n.title }</Headline>
+        <Summany>{ n.summary }</Summany>
+        <FlexRow right padding="0 0 10px">
+          <PublicationDate>{ moment(n.publication_date).format("MMM Do YY") }</PublicationDate>
+        </FlexRow>
+      </article>
     </NewsContainer>
   ))
 

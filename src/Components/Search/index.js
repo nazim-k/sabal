@@ -6,7 +6,7 @@ import {
   SearchIcon,
   CloseIcon
 } from './Styled';
-import { FlexColumn, FlexRow, Paragraph } from '../Styled';
+import { FlexColumn, FlexRow, Paragraph } from '../CommonStyled';
 import Results from './Results';
 
 const companies = [
@@ -82,20 +82,27 @@ const companies = [
   }
 ];
 
-function Search() {
-  return <ComponentContainer>
+function Search({ searchVisibility, closeSearch }) {
+  return <ComponentContainer visibility={ searchVisibility ? 'block' : 'none' }>
+
     <FlexColumn width="60%" margin="auto">
+
       <InputContainer>
         <Input placeholder="Enter a symbol or a keyword"/>
         <SearchIcon src="/icons/search-green.svg" alt="search"/>
       </InputContainer>
+
       <FlexRow height="auto" between margin="0 0 15px">
         <Paragraph green>Search</Paragraph>
         <Paragraph gray>Submit entry for keyword result</Paragraph>
       </FlexRow>
-      <Results companies={ companies }/>
+
+      <Results companies={ companies } closeSearch={ closeSearch }/>
+
     </FlexColumn>
-    <CloseIcon src="/icons/close.svg" alt="close"/>
+
+    <CloseIcon src="/icons/close.svg" alt="close" onClick={ closeSearch }/>
+
   </ComponentContainer>
 
 }

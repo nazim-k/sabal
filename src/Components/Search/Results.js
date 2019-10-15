@@ -1,6 +1,6 @@
 import React from 'react';
 import { ResultsDiv } from './Styled';
-import { LinkWrapper, FlexRow, FlexColumn, Paragraph } from '../Styled';
+import { LinkWrapper, FlexRow, FlexColumn, Paragraph } from '../CommonStyled';
 
 function Cell({ right, value,  ...props }) {
 
@@ -10,9 +10,9 @@ function Cell({ right, value,  ...props }) {
 
 }
 
-function Result({ name, ticker, lei}) {
+function Result({ name, ticker, lei, closeSearch}) {
 
-  return <FlexRow height="auto" margin="0 0 10px">
+  return <FlexRow height="auto" margin="0 0 10px" onClick={ closeSearch }>
     <LinkWrapper to={ `/companies/${ticker}` }>
       <FlexRow bg="black" around padding="5px 15px">
         {
@@ -26,9 +26,10 @@ function Result({ name, ticker, lei}) {
 
 }
 
-function Results({ companies }) {
+function Results({ companies, closeSearch }) {
 
   return [
+
     <FlexRow key="header" height="auto" around padding="5px 15px">
       {
         [ 'Name', 'Ticker', 'LEI' ].map((value, index) => (
@@ -36,11 +37,15 @@ function Results({ companies }) {
         ))
       }
     </FlexRow>,
+
     <ResultsDiv key="rows">
-    {
-      companies.map( (company, index) => <Result key={ index } { ...company }/>)
-    }
+      {
+        companies.map( (company, index) => (
+          <Result key={ index } { ...company } closeSearch={ closeSearch }/>
+        ))
+      }
     </ResultsDiv>
+
   ]
 
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Provider } from 'react-redux';
 import {
   BrowserRouter as Router,
@@ -13,17 +13,27 @@ import { Header, Home, Companies, Company, Search } from './Components';
 const store = configureStore();
 
 function App() {
-  return <Router>
-    <Provider store={ store }>
-      <Header/>
+
+  const [ searchVisibility, setsearchVisibility] = useState(false);
+
+  return <Provider store={ store }>
+    <Router>
+
+      <Header openSearch={ () => setsearchVisibility(true) }/>
+
       <Switch>
-        <Route path="/search" component={ Search }/>
         <Route path="/companies/:company" component={ Company }/>
         <Route path="/companies" component={ Companies }/>
         <Route path="/" component={ Home }/>
       </Switch>
-    </Provider>
-  </Router>
+
+      <Search
+        searchVisibility={ searchVisibility }
+        closeSearch={ () => setsearchVisibility(false) }
+      />
+
+    </Router>
+  </Provider>
 }
 
 export default App;

@@ -1,22 +1,25 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 import { defaultStockActionCreators } from '../../actionCreators';
-import { FlexRow, FlexColumn, Title } from "../Styled";
+import { FlexSection, FlexRow, Title } from "../CommonStyled";
 import ErronrMessage from '../ErrorMessage'
 import Card from './Card';
 import PropTypes from 'prop-types';
 
-function Home(props) {
-  const { loadDefaultStock, data, isLoading, lastUpdate, isFail, failError } = props;
+function Home({ data, loadDefaultStock, shouldUpdateDefaultStock, isLoading, failError }) {
+
   useEffect(() => {
-    if (!lastUpdate || new Date() - lastUpdate > 86400)
+    if (shouldUpdateDefaultStock)
       loadDefaultStock();
-  }, [loadDefaultStock, lastUpdate]);
+  }, [loadDefaultStock, shouldUpdateDefaultStock]);
 
-  if (isFail) return <ErronrMessage center info={ failError }/>;
+  if (failError) return <ErronrMessage error={ failError } center/>;
 
-  return <FlexColumn height="90vh">
-    <Title>Stock Prices by Exchange</Title>
+  return <FlexSection height="90vh">
+
+    <Title>Stock Prices by Security </Title>
+
     <FlexRow middle wrapRow>
       {
         data.map( (stock, index) => (
@@ -24,20 +27,38 @@ function Home(props) {
         ))
       }
     </FlexRow>
-  </FlexColumn>
+  </FlexSection>
 
 }
 
-Home.propTypes = {
-  loadDefaultStock: PropTypes.func,
-  data: PropTypes.array,
-  isLoading: PropTypes.bool,
-  lastUpdate: PropTypes.object,
-  isFail: PropTypes.bool,
-  failError: PropTypes.string
+Home.defaultProps = {
+  shouldUpdateDefaultStock: true,
+  isLoading: true,
+  failError: null
 };
 
+Home.propTypes = {
+  data: PropTypes.array.isRequired,
+  loadDefaultStock: PropTypes.func.isRequired,
+  shouldUpdateDefaultStock: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool,
+  failError: PropTypes.object
+};
+
+
+
+//                CONNECT COMPONENT TO REDUX STORE
+
+const getLastUpdate = defaultStock => defaultStock.lastUpdate;
+const shouldUpdateDefaultStock = createSelector(
+  [ getLastUpdate ],
+  ( lastUpdate ) => !lastUpdate || new Date() - lastUpdate > 86400
+);
+
 export default connect(
-  state => state.defaultStock,
+  ({ defaultStock }) => ({
+    shouldUpdateDefaultStock: shouldUpdateDefaultStock(defaultStock),
+    ...defaultStock
+  }),
   defaultStockActionCreators
 )(Home);

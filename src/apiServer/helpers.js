@@ -1,17 +1,16 @@
 import {api_key} from "../API_KEY";
 import axios from "axios/index";
 
+// Stock request helpers
+const transormStockResponse = data => {
+  // Extract needed data from api server response.
+  const { adj_open: open, adj_low: low, adj_high: high } = data.stock_prices[0];
+  const { name, ticker } = data.security;
+  return { name, ticker, open, low, high }
+};
 
 export const axiosStockReques = async ticker => {
   // Get stock prices
-
-  const transormStockResponse = data => {
-    // Extract needed data from api server response.
-    const { adj_open: open, adj_low: low, adj_high: high } = data.stock_prices[0];
-    const { name, ticker } = data.security;
-    return { name, ticker, open, low, high }
-  };
-
   try {
     const response = await axios.get(`https://api-v2.intrinio.com/securities/${ticker}/prices`, {
       params: {
@@ -20,6 +19,20 @@ export const axiosStockReques = async ticker => {
     });
     return transormStockResponse(response.data);
   } catch (e) {
-    return { name: '', ticker, open: 0, low: 0, high: 0, error: e.response }
+    return { ticker, error: e.response }
   }
+};
+
+// All companies request helpers
+export const axiosAllCompaniesRequest = async nextPage => {
+
+  const { data } = await axios.get('https://api-v2.intrinio.com/companies', {
+    params: {
+      api_key,
+      page_size: 30,
+      next_page: nextPage
+    }
+  });
+  return data;
+
 };

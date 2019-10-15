@@ -1,4 +1,4 @@
-import { axiosStockReques } from './helpers'
+import { axiosStockReques, axiosAllCompaniesRequest } from './helpers';
 
 export const getStockPricesByTicker =  async tickers => {
 
@@ -10,4 +10,12 @@ export const getStockPricesByTicker =  async tickers => {
   }
   throw new Error('getStockPricesByTicker gets an array of tickers as argument')
 
+};
+
+export const getAllCompanies = async nextPage => {
+  const { companies, next_page } = await axiosAllCompaniesRequest(nextPage);
+  return {
+    data: companies,
+    nextPage: next_page
+  }
 };

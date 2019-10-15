@@ -1,14 +1,14 @@
 import React from 'react';
 import { Input, TextArea, Button } from './Styled';
 
-function Index() {
+function ComemntForm() {
 
-  return <div>
+  return <form>
     <Input type="text" placeholder="name"/>
     <TextArea placeholder="comment"/>
-    <Button>Comment</Button>
-  </div>
+    <Button type="submit">Comment</Button>
+  </form>
 
 }
 
-export default Index;
+export default ComemntForm;

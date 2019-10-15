@@ -1,3 +1,5 @@
+import produce from 'immer';
+import { setLoadingProps, setLoadingSuccessProps, setLoadingErrorProps } from './helpers'
 import { defaultStockTickers } from '../CONFIG';
 import {
   LOAD_DEFAULT_STOCK,
@@ -10,18 +12,22 @@ const initialState = {
   lastUpdate: null,
   isLoading: true,
   isFail: false,
-  failError: ''
+  failError: null
 };
 
-export default function defaultReducer(state=initialState, action) {
+export default produce((state=initialState, action) => {
   switch (action.type) {
     case LOAD_DEFAULT_STOCK:
-      return { ...state, isLoading: true, isFail: false };
+      setLoadingProps(state);
+      return;
     case LOAD_DEFAULT_STOCK_SUCCESS:
-      return { ...state, data: action.data, isLoading: false, isFail: false, lastUpdate: new Date() };
+      setLoadingSuccessProps(state);
+      state.data = action.data;
+      return state;
     case LOAD_DEFAULT_STOCK_FAILURE:
-      return { ...state, isFail: true, failError: action.error };
+      setLoadingErrorProps(state, action.error);
+      return state;
     default:
       return state;
   }
-}
+})

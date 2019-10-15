@@ -1,14 +1,16 @@
 import styled from 'styled-components';
-import {FlexRow} from "../Styled";
+import {FlexRow} from "../CommonStyled";
 
 export const ComponentContainer = styled.div`
-  position: absolute;
+  display: ${ props => props.visibility };
+  position: fixed;
   top: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(32, 32, 32, 0.98);
   padding: 12vh 0 50px;
   box-sizing: border-box;
+  z-index: 100;
 `;
 
 export const Input = styled.input`
@@ -31,7 +33,7 @@ export const SearchIcon = styled.img`
   height: 100%;
 `;
 
-export const ResultsDiv = styled.div`
+export const ResultsDiv = styled.section`
   width: 100%;
   padding: 10px 0;
   height: 100%;

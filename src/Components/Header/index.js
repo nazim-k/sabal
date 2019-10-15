@@ -1,41 +1,28 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
-import { FlexRow } from "../Styled";
+import { ApplicatoinTitle, HeaderLink, activeLinkStyle, Nav, Search } from './Styled';
+import { FlexRow, LinkWrapper } from "../CommonStyled";
+import PropTypes from 'prop-types';
 
-const headerIndentation = '5%';
-
-const ApplicatoinTitle = styled.p`
-  font-family: 'Big Shoulders Text';
-  font-size: 3em;
-  padding-left: ${headerIndentation};
-  margin: 0;
-`;
-
-const HeaderLink = styled(NavLink)`
-  text-decoration: none;
-  color: #f7fafc;
-  padding: 0 10px;
-`;
-
-const activeLinkStyle = {
-  borderBottom: '1px solid #4db74d',
-  color: '#4db74d'
-};
-
-function Header({ height }) {
+function Header({ openSearch }) {
 
   return <FlexRow bg="#1a202c" height="10vh" middle color="#f7fafc" between>
-    <ApplicatoinTitle>Sabal</ApplicatoinTitle>
-    <FlexRow middle evenly width="30%" padding={ `0 ${headerIndentation}` }>
+
+    <ApplicatoinTitle>
+      <LinkWrapper to="/" theme="light">Sabal</LinkWrapper>
+    </ApplicatoinTitle>
+
+    <Nav>
       <HeaderLink exact to="/" activeStyle={ activeLinkStyle }>Home</HeaderLink>
       <HeaderLink exact to="/companies" activeStyle={ activeLinkStyle }>Companies</HeaderLink>
-      <HeaderLink exact to="/search" activeStyle={ activeLinkStyle }>
-        <img src="/icons/search.svg" alt="search"/>
-      </HeaderLink>
-    </FlexRow>
+      <Search src="/icons/search.svg" alt="search" onClick={ openSearch }/>
+    </Nav>
+
   </FlexRow>
 
 }
+
+Header.propTypes = {
+  openSearch: PropTypes.func.isRequired
+};
 
 export default Header;

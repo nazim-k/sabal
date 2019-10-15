@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FlexColumn, FlexRow, Table, Title } from '../Styled';
+import { FlexSection, FlexColumn, FlexRow, Table, Title } from '../CommonStyled';
 import { extractRowsFromObject } from '../../helpers';
 import Comments from './Commets';
-import Index from './CommentForm';
+import ComemntForm from './CommentForm';
 import News from './News';
 
 const data = {
@@ -56,14 +56,6 @@ const keys = {
   sector: 'Sectors'
 };
 
-const CommentsContainer = styled.div`
- width: 100%;
- height: 35%;
- padding: 5px 20px;
- box-sizing: border-box;
- margin-bottom: 10px;
-`;
-
 const CommentsDiv = styled.div`
   width: 100%;
   padding: 5px 0;
@@ -74,35 +66,52 @@ const CommentsDiv = styled.div`
   border-bottom: 4px solid rgb(204, 204, 204);
 `;
 
-const NewsContainer = styled.div`
+const NewsContainer = styled.section`
   height: 100%;
   width: 50%;
-  padding: 10px 20px 40px;
+  padding: 0 20px 40px;
   box-sizing: border-box;
   overflow-y: auto;
 `;
 
+
 function Company() {
   const rows = extractRowsFromObject({ data, keys });
-  return <FlexRow height="120vh">
-    <FlexColumn key="companyInfo" between width="50%">
-      <Title>Company Information</Title>
-      <FlexRow height="auto" padding="0 20px 20px">
+  return <FlexRow height="140vh">
+    <FlexColumn key="companyInfo" between width="50%" padding="0 0 25px">
+
+      <FlexSection height="auto" padding="0 20px">
+        <Title>Company Information</Title>
         <Table rows={ rows } hover={ false } padding="5px"/>
-      </FlexRow>
-      <CommentsContainer>
+        <details>
+          <summary style={{ outline: 'none', paddingTop: '15px' }}>
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </summary>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </details>
+      </FlexSection>
+
+      <FlexSection height="35%" left padding="0 20px">
+        <Title>Comments</Title>
         <CommentsDiv>
           <Comments/>
         </CommentsDiv>
-      </CommentsContainer>
-      <FlexColumn height="auto" padding="20px">
-        <Index/>
-      </FlexColumn>
+      </FlexSection>
+
+      <FlexSection height="auto" left padding="0 20px">
+        <Title>Leave a comment</Title>
+        <ComemntForm/>
+      </FlexSection>
+
     </FlexColumn>
+
     <NewsContainer key="news">
       <Title>All Related News</Title>
       <News/>
     </NewsContainer>
+
+
   </FlexRow>
 }
 
