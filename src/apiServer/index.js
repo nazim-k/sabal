@@ -1,4 +1,4 @@
-import { axiosStockReques, axiosAllCompaniesRequest } from './helpers';
+import { axiosStockReques, axiosAllCompaniesRequest, axiosSearchRequest } from './helpers';
 
 export const getStockPricesByTicker =  async tickers => {
 
@@ -18,4 +18,9 @@ export const getAllCompanies = async nextPage => {
     data: companies,
     nextPage: next_page
   }
+};
+
+export const searchCompanies = async query => {
+  const { companies } = await axiosSearchRequest(query);
+  return companies;
 };

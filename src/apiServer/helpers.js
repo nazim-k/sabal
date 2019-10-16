@@ -36,3 +36,18 @@ export const axiosAllCompaniesRequest = async nextPage => {
   return data;
 
 };
+
+// Search companies request
+export const axiosSearchRequest = async query => {
+
+  const { data } = await axios.get('https://api-v2.intrinio.com/companies/search', {
+    params: {
+      api_key,
+      query,
+      page_size: 20
+    }
+  });
+
+  return data
+
+};

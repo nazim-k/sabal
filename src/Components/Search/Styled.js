@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import {FlexRow} from "../CommonStyled";
 
 export const ComponentContainer = styled.div`
-  display: ${ props => props.visibility };
   position: fixed;
   top: 0;
   width: 100vw;

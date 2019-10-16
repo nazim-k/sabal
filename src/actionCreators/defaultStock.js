@@ -20,8 +20,7 @@ const loadDefaultStock = ticker => dispatch => {
 
 };
 
-const objectFullOfActionCreatorsForMapDispatch = {
+
+export default {
   loadDefaultStock
 };
-
-export default objectFullOfActionCreatorsForMapDispatch

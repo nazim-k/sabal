@@ -1,11 +1,15 @@
-export function transformArrayOfObjectsToRows({ data, keys, link }) {
+import { companiesTable } from '../CONFIG';
+
+const { columns, link } = companiesTable;
+
+export function transformArrayOfObjectsToRows(companies) {
   const result = [];
   const links = [];
   try {
-    data.forEach( d => {
+    companies.forEach(d => {
       const row = [];
       links.push( d[link] );
-      keys.forEach( key => row.push( d[key] ));
+      columns.forEach(key => row.push( d[key] ));
       result.push(row);
     });
     if (link) return { result, links };

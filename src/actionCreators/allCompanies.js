@@ -42,10 +42,9 @@ const prevCompaniesPage = () => ({
   type: PREVIOUS_COMPANIES_PAGE
 });
 
-const objectFullOfActionCreatorsForMapDispatch = {
+
+export default {
   loadAllCompanies,
   nextCompaniesPage,
   prevCompaniesPage
 };
-
-export default objectFullOfActionCreatorsForMapDispatch

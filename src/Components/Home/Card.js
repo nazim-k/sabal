@@ -32,7 +32,7 @@ function CardBody({ name, ticker, open, high, low, isLoading }) {
 function Card(props) {
 
   const { ticker, error } = props;
-  return <CardsContainer bg="#fff" width="18%" height="35%" around center>
+  return <CardsContainer bg="#fff" width="18%" height="40%" around center>
 
     <LinkWrapper to={ `/companies/${ ticker }` }>
       <FlexSection evenly center>

@@ -2,7 +2,7 @@ import React from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import StyledTable from './Table';
+import StyledTable from '../Common/Table/index';
 
 const Flex = styled.div`
   display: flex;

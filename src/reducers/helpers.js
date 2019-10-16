@@ -5,10 +5,10 @@ export const setLoadingProps = state => {
   state.failError = null;
 };
 
-export const setLoadingSuccessProps = state => {
+export const setLoadingSuccessProps = (state, trackLastUpdate=true) => {
   state.isLoading = false;
   state.failError = null;
-  state.lastUpdate = new Date();
+  if (trackLastUpdate) state.lastUpdate = new Date();
 };
 
 export const setLoadingErrorProps = (state, error) => {
