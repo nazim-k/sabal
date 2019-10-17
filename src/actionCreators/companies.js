@@ -28,7 +28,7 @@ const loadAllCompanies = () => (dispatch, getState) => {
       },
       error => dispatch({
         type: LOAD_COMPANIES_FAILURE,
-        error: error.response
+        error: error.response || error.message
       })
     )
 

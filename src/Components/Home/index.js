@@ -39,7 +39,10 @@ Home.propTypes = {
   loadDefaultStock: PropTypes.func.isRequired,
   shouldUpdateDefaultStock: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool,
-  failError: PropTypes.object
+  failError: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ])
 };
 
 export default Home

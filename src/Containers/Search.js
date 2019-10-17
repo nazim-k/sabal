@@ -45,7 +45,7 @@ function SearchContainer({ searchCompanies, searchCompaniesSuccess, searchCompan
             if ( shouldUpdateReduxStore )
               searchCompaniesSuccess(companies);
           })
-          .catch(({ response }) => searchCompaniesFailure(response) );
+          .catch(searchCompaniesFailure);
 
         if (shouldUpdateReduxStore) searchCompanies(query);
       }, debouncePause );

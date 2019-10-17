@@ -35,14 +35,16 @@ function Row({ row, onClick }) {
 
 }
 
-function Table({ header, rows, links, onRowClick, dark, padding, history, isLoading }) {
+function Table({ header, rows, links, onRowClick, dark, padding, loadingHeight, loadingWidth, history, isLoading }) {
 
   function handleRowClick (ticker) {
     if (links) history.push(`/companies/${ticker}`);
     if (onRowClick) onRowClick();
   }
 
-  if (isLoading) return rows.map( (row, index) => <TextSkeleton key={ index }/> );
+  if (isLoading) return rows.map( (row, index) => (
+    <TextSkeleton key={ index } divHeight={ loadingHeight } divWidth={ loadingWidth }/>
+  ));
 
   return <ThemeProvider theme={ getTheme(dark, !!links, padding) }>
     <StyledTable>
@@ -65,7 +67,9 @@ function Table({ header, rows, links, onRowClick, dark, padding, history, isLoad
 
 Table.defaultProps = {
   rows: [],
-  isLoading: false
+  isLoading: false,
+  loadingWidth: '80%',
+  loadingHeight: 'auto'
 };
 
 export default withRouter(Table);

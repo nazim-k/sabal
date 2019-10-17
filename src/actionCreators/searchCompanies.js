@@ -12,9 +12,9 @@ const searchCompaniesSuccess = companies => ({
   companies
 });
 
-const searchCompaniesFailure = () => error => ({
+const searchCompaniesFailure = error => ({
   type: SEARCH_COMPANIES_FAILURE,
-  error: error.response
+  error: error.response || error.message
 });
 
 const clearSearchResults = () => ({ type: SEARCH_CLEAR_RESULTS });

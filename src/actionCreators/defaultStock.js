@@ -14,7 +14,7 @@ const loadDefaultStock = ticker => dispatch => {
       }),
       error => dispatch({
         type: LOAD_DEFAULT_STOCK_FAILURE,
-        message: error
+        error: error.response || error.message
       })
     )
 

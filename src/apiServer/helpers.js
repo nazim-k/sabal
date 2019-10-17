@@ -11,16 +11,12 @@ const transormStockResponse = data => {
 
 export const axiosStockReques = async ticker => {
   // Get stock prices
-  try {
-    const response = await axios.get(`https://api-v2.intrinio.com/securities/${ticker}/prices`, {
-      params: {
-        api_key
-      }
-    });
-    return transormStockResponse(response.data);
-  } catch (e) {
-    return { ticker, error: e.response }
-  }
+  const response = await axios.get(`https://api-v2.intrinio.com/securities/${ticker}/prices`, {
+    params: {
+      api_key
+    }
+  });
+  return transormStockResponse(response.data);
 };
 
 // All companies request helpers
@@ -50,4 +46,14 @@ export const axiosSearchRequest = async query => {
 
   return data
 
+};
+
+// Company request
+export const axiosCompanyInfo = async ticker => {
+  const { data } = await axios.get(`https://api-v2.intrinio.com/companies/${ticker}`, {
+    params: {
+      api_key
+    }
+  });
+  return data
 };

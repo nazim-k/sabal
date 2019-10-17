@@ -11,6 +11,9 @@ export const ApplicatoinTitle = styled.h1`
 `;
 
 export const HeaderLink = styled(NavLink)`
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
   text-decoration: none;
   color: #f7fafc;
   padding: 0 10px;
@@ -19,6 +22,7 @@ export const HeaderLink = styled(NavLink)`
 export const Search = styled.img`
   cursor: pointer;
   padding: 0 10px;
+  height: 3.5rem;
 `;
 
 export const activeLinkStyle = {

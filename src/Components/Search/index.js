@@ -7,14 +7,13 @@ import {
   CloseIcon
 } from './Styled';
 import { FlexColumn, FlexRow, Paragraph } from '../CommonStyled';
-
 import { Table } from '../CommonStyled';
 import { companiesTable } from '../../CONFIG';
 
 const { header } = companiesTable;
 
 
-function Search({ companies, links, query, setQuery, closeSearch, isLoading }) {
+function Search({ companies, links, query, setQuery, closeSearch, isLoading, failError }) {
 
   return <ComponentContainer>
 
@@ -37,6 +36,8 @@ function Search({ companies, links, query, setQuery, closeSearch, isLoading }) {
               ? 'Searching...'
               : companies.length
               ? `Results: ${ companies.length }`
+              : failError
+              ? 'Error'
               : ''
           }
         </Paragraph>

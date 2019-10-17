@@ -40,7 +40,10 @@ Companies.propTypes = {
   companies: PropTypes.arrayOf(PropTypes.array),
   links: PropTypes.arrayOf(PropTypes.string),
   isLoading: PropTypes.bool,
-  failError: PropTypes.object,
+  failError: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string
+  ])
 };
 
 export default Companies;

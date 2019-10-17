@@ -11,7 +11,6 @@ const initialState = {
   data: defaultStockTickers,
   lastUpdate: null,
   isLoading: true,
-  isFail: false,
   failError: null
 };
 

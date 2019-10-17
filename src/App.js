@@ -10,8 +10,16 @@ import configureStore from './configureStore';
 import { Header, Company } from './Components';
 import { HomeConainer, CompaniesContainer, SearchContainer } from './Containers';
 
-// TODO cheack preloadedState from localSorage;
-const store = configureStore();
+function preloadedState() {
+  const comments = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    let ticker = localStorage.key(i);
+    comments[ticker] = JSON.parse(localStorage.getItem(ticker));
+  }
+  return comments
+}
+
+const store = configureStore({ companyComments: preloadedState() });
 
 function App() {
 

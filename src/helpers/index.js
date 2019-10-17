@@ -22,7 +22,18 @@ export function transformArrayOfObjectsToRows(companies) {
   }
 }
 
-export function extractRowsFromObject({ data, keys }) {
+const keys = {
+  ticker: 'Ticker',
+  name: 'Name',
+  legal_name: 'Legal Name',
+  stock_exchange: 'Stock Exchange',
+  ceo: 'CEO Name',
+  entity_status: 'Entity Status',
+  hq_country: 'Head Quarters Country',
+  sector: 'Sectors'
+};
+
+export function extractRowsFromObject(data) {
   const result = [];
   try {
     Object.keys(keys).forEach( key => result.push([ keys[key], data[key] ]));

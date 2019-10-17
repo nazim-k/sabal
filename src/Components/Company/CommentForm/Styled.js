@@ -14,12 +14,22 @@ const styleComponent = Component => styled(Component)`
 
 export const Input = styleComponent(styled.input`
   border: none;
+  &:valid {
+    border 1px solid #38a169;
+  }
 `);
 
 export const TextArea = styleComponent(styleComponent(styled.textarea`
   height: 100px;
   border: none;
+  &:valid {
+    border 1px solid #38a169;
+  }
 `));
+
+export const Form = styled.form`
+  width: 100%;
+`;
 
 export const Button = styleComponent(styled.button`
   background-color: #68d391;

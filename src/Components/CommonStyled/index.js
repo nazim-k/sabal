@@ -128,6 +128,11 @@ export const Paragraph = styled.p`
     if (props.color) return props.color;
     return '#1a202c'
   }};
+  text-align: ${ props => {
+    if (props.center) return 'center';
+    if (props.left) return 'center';
+    if (props.right) return 'right';
+  }};
   padding: ${ props => props.padding };
   margin: ${ props => props.margin };  
 `;
@@ -137,9 +142,9 @@ const SkeletonDiv = styled.div`
   height: ${ props => props.height || 'auto' };
 `;
 
-export function TextSkeleton({ divHeight, ...props }) {
+export function TextSkeleton({ divHeight, divWidth, ...props }) {
 
-  return <SkeletonDiv height={ divHeight }>
+  return <SkeletonDiv height={ divHeight } width={ divWidth }>
     <Skeleton { ...props }/>
   </SkeletonDiv>
 

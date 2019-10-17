@@ -26,6 +26,8 @@ function ErrorMessage({ error, info, ...flexProps }) {
       message = 'Oops! Something went wrong';
   }
 
+  if (!info && typeof error === 'string') info = error;
+
   return <FlexColumn height="auto" { ...flexProps }>
     <Paragraph red>{ message }</Paragraph>
     <Paragraph gray>{ info }</Paragraph>

@@ -42,13 +42,13 @@ const getCompaniesAndLinks = createSelector(
 );
 
 export default connect(
-  ({ allCompanies }) => {
-    const { isLoading, failError } = allCompanies;
-    const { result: companies, links } = getCompaniesAndLinks(allCompanies);
+  ({ companies }) => {
+    const { isLoading, failError } = companies;
+    const { result, links } = getCompaniesAndLinks(companies);
     return {
-      companies,
+      companies: result,
       links,
-      shouldLoadAllCompanies: !companies.length, // Load new content only if there is no content for current page;
+      shouldLoadAllCompanies: !result.length, // Load new content only if there is no content for current page;
       isLoading,
       failError
     }

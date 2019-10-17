@@ -1,4 +1,6 @@
-import { axiosStockReques, axiosAllCompaniesRequest, axiosSearchRequest } from './helpers';
+import { axiosStockReques, axiosAllCompaniesRequest, axiosSearchRequest, axiosCompanyInfo } from './helpers';
+import {api_key} from "../API_KEY";
+import axios from "axios/index";
 
 export const getStockPricesByTicker =  async tickers => {
 
@@ -23,4 +25,18 @@ export const getAllCompanies = async nextPage => {
 export const searchCompanies = async query => {
   const { companies } = await axiosSearchRequest(query);
   return companies;
+};
+
+export const getCompanyInfo = async ticker => axiosCompanyInfo(ticker);
+
+export const getCompanyNews = async (ticker, nextPage) => {
+
+  const { data } = await axios.get(`https://api-v2.intrinio.com/companies/${'KO'}/news`,  {
+    params: {
+      api_key,
+      page_size: 20,
+      next_page: nextPage
+    }
+  });
+  return data
 };
