@@ -9,7 +9,7 @@ function NewsContainer({ loadCompanyNews, nextPage, ticker, ...props }) {
   function handleScroll({ target }) {
     //Load New Related news when user scroll news to the bottom
     const { scrollHeight, scrollTop, clientHeight } = target;
-    if (scrollHeight - scrollTop - clientHeight === 0 && !props.isLoading)
+    if (scrollHeight - scrollTop - clientHeight < 10 && !props.isLoading)
       loadCompanyNews({ ticker, shouldUpdateExistingNews: true});
   }
 
