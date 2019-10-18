@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import configureStore from './configureStore';
 import { Header, Company } from './Components';
-import { HomeConainer, CompaniesContainer, SearchContainer } from 'Containers';
+import { StockConainer, CompaniesContainer, SearchContainer } from 'Containers';
 import { preloadedState } from 'helpers'
 
 
@@ -25,7 +25,7 @@ function App() {
       <Switch>
         <Route path="/companies/:company" component={ Company }/>
         <Route path="/companies" component={ CompaniesContainer }/>
-        <Route path="/" component={ HomeConainer }/>
+        <Route path="/" component={ StockConainer }/>
       </Switch>
 
       {

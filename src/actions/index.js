@@ -1,8 +1,8 @@
 /*
 There is four main data structure
-1. Default stock - rendered by Stock component.
-2. All Companies - rendered by Companies component.
-3. Company - company info rendered by Company component.
+1. Stock - rendered by Stock component.
+2. Companies - rendered by Companies component.
+3. Company info - company info rendered by Company component.
 4. Comments - all comments rendered by Company component.
 5. News - all related news rendered by Company component.
 4. Search - search all companies results rendered by Search Component. Should be clear after unmount Search component

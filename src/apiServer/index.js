@@ -25,10 +25,6 @@ export const getAllCompanies = async nextPage => {
     }
   });
 
-  console.group('API SERVER COMPANIES RESPONSE');
-  console.log(data);
-  console.groupEnd();
-
   return {
     data: data.companies,
     nextPage: data.next_page

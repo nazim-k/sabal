@@ -53,9 +53,6 @@ export default connect(
   ({ companies }) => {
     const { currentPageIndex, nextPage, isLoading, failError } = companies;
     const { result, links } = getCompaniesAndLinks(companies);
-    console.group('COMPANIES CONTAINER MAP STATE');
-    console.dir(companies);
-    console.groupEnd();
     return {
       companies: result,
       links,

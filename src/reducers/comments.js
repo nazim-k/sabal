@@ -1,9 +1,7 @@
 import produce from 'immer';
 import { ADD_COMMENT } from '../actions';
-import CONFIG from 'CONFIG';
 
-const { defaultComments } = CONFIG.company.comments || {};
-const initialState = { ...defaultComments };
+const initialState = {};
 
 export default produce((state=initialState, action) => {
 

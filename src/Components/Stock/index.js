@@ -8,7 +8,7 @@ import Card from './Card';
 const height = 100 - CONFIG.header.height;
 const { title } = CONFIG.home;
 
-function Home({ data, loadDefaultStock, shouldUpdateDefaultStock, isLoading, failError }) {
+function Stock({ data, loadDefaultStock, shouldUpdateDefaultStock, isLoading, failError }) {
 
   useEffect(() => {
     if (shouldUpdateDefaultStock) loadDefaultStock();
@@ -31,14 +31,14 @@ function Home({ data, loadDefaultStock, shouldUpdateDefaultStock, isLoading, fai
 
 }
 
-Home.defaultProps = {
+Stock.defaultProps = {
   data: [],
   shouldUpdateDefaultStock: true,
   isLoading: true,
   failError: null
 };
 
-Home.propTypes = {
+Stock.propTypes = {
   data: PropTypes.arrayOf(PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.shape({
@@ -61,4 +61,4 @@ Home.propTypes = {
   ])
 };
 
-export default Home
+export default Stock

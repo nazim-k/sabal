@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { FlexBox, OverflowDivision } from 'Components/StyledComponents';
+import { FlexBox } from 'Components/StyledComponents';
 import {
-  CompanyInfoContainer,
-  CompanyCommentFormContainer,
-  CompanyCommentsContainer,
-  CompnayNewsContainer
+  InfoContainer,
+  FormContainer,
+  CommentsContainer,
+  NewsContainer
 } from 'Containers';
-import CONFIG from 'CONFIG';
-
-const height = 100 - CONFIG.header.height;
 
 function Company(props) {
   const { company } = props.match.params;
@@ -18,19 +15,17 @@ function Company(props) {
     window.scrollTo(0,0);
   }, []);
 
-  return <FlexBox row wrapRow>
+  return <FlexBox row wrapRow left>
 
-    <FlexBox between width="50%" height={ `${ height }vh` } padding="0 0 25px">
+    <FlexBox between width="50%" height="auto" padding="0 0 25px" borderRight="1px solid #a0aec0">
 
-      <OverflowDivision>
-        <CompanyInfoContainer ticker={ company }/>
-        <CompanyCommentsContainer ticker={ company }/>
-        <CompanyCommentFormContainer ticker={ company }/>
-      </OverflowDivision>
+      <InfoContainer ticker={ company }/>
+      <CommentsContainer ticker={ company }/>
+      <FormContainer ticker={ company }/>
 
     </FlexBox>
 
-    <CompnayNewsContainer ticker={ company }/>
+    <NewsContainer ticker={ company }/>
 
   </FlexBox>
 }

@@ -32,7 +32,7 @@ export default {
         height: "40%",
         padding: '8px',
         margin: '8px',
-        'box-shadow': '0px 5px 10px #cbd5e',
+        boxShadow: '0px 5px 10px #cbd5e0',
         minWidth: '150px'
       }
     }
@@ -42,7 +42,11 @@ export default {
     title: 'Companies',
     prevButton: 'back',
     nextButton: 'next',
-    nextPageDemo: false, // if true return next page token from intrino demo if server response with next_page=null. Data will be identical.
+    nextPageDemo: false,
+    /*
+      if true return next page token from intrinio demo response,
+      if server response with next_page=null. Data will be identical.
+     */
     style: {
       width: '80%',
       padding: '0 0 25px',

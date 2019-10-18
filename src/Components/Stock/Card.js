@@ -7,7 +7,7 @@ import CONFIG from 'CONFIG';
 
 const { style } = CONFIG.home.card;
 
-function CardBody({ name, ticker, open, high, low, isLoading }) {
+function CardBody({ name, open, high, low, isLoading }) {
 
   const title = isLoading
     ? <Skeleton key="title" height="25px"/>
@@ -18,7 +18,6 @@ function CardBody({ name, ticker, open, high, low, isLoading }) {
     <Table
       key="table"
       rows={ [
-        [ 'Ticker', ticker ],
         [ 'Open', open ],
         [ 'High', high ],
         [ 'Low', low ],
@@ -47,7 +46,7 @@ function Card(props) {
 
 Card.defaultProps = {
   name: 'Unknown',
-  ticker: 'unknown',
+  ticker: '',
   open: 0,
   height: 0,
   low: 0,

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { StyledTr, StyledTd } from './Styled';
 
 export default function Trow({ row, onClick }) {
@@ -12,3 +13,11 @@ export default function Trow({ row, onClick }) {
   </StyledTr>
 
 }
+
+Trow.propTypes = {
+  row: PropTypes.arrayOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ])).isRequired,
+  onClick: PropTypes.func
+};

@@ -1,5 +1,7 @@
 import CONFIG from 'CONFIG';
 
+const { defaultComments } = CONFIG.company.comments || {};
+
 const { columns, link } = CONFIG.table.compnaies;
 const { keys } = CONFIG.company.info;
 
@@ -39,7 +41,7 @@ export function extractRowsFromObject(data) {
 }
 
 export function preloadedState() {
-  const comments = {};
+  const comments = defaultComments || {};
   for (let i = 0; i < localStorage.length; i++) {
     let ticker = localStorage.key(i);
     comments[ticker] = JSON.parse(localStorage.getItem(ticker));

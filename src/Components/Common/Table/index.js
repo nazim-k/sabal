@@ -11,7 +11,7 @@ import { StyledTable } from './Styled';
 function getTheme(dark, hover, padding) {
 
   const theme = dark
-    ? { fontColor: '#edf2f7', bg: 'transparent' }
+    ? { fontColor: '#cbd5e0', bg: 'transparent' }
     : { fontColor: '#1a202c', bg: 'transparent' };
 
   return {
@@ -61,12 +61,7 @@ Table.defaultProps = {
 
 Table.propTypes = {
   header: PropTypes.array,
-  rows: PropTypes.arrayOf(PropTypes.arrayOf(
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ])
-  )).isRequired,
+  rows: PropTypes.array.isRequired,
   links: PropTypes.array,
   onRowClick: PropTypes.func,
   history: PropTypes.object.isRequired,

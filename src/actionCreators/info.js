@@ -21,15 +21,10 @@ export const loadCompanyInfo = ticker => (dispatch, getState) => {
           type: LOAD_COMPANY_INFO_SUCCESS,
           info
         }),
-        error => {
-          console.group('api server company info response');
-          console.dir(error);
-          console.groupEnd();
-          dispatch({
-            type: LOAD_COMPANY_INFO_FAILURE,
-            error: error.response || error.message
-          })
-        }
+        error => dispatch({
+          type: LOAD_COMPANY_INFO_FAILURE,
+          error: error.response || error.message
+        })
       )
   }
 

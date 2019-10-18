@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { StyledTd } from './Styled';
 
 export default function Thead({ header }) {
@@ -18,3 +19,10 @@ export default function Thead({ header }) {
   )
 
 }
+
+Thead.propTypes = {
+  header: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string).isRequired,
+    PropTypes.oneOf([null, undefined])
+  ])
+};

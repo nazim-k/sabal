@@ -1,12 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { NewsRow, Spinner } from './Styled';
-import {  OverflowDivision, Title, Paragraph } from 'Components/StyledComponents';
+import { NewsRow, Spinner, StickyDivision } from './Styled';
+import { Title, Paragraph } from 'Components/StyledComponents';
 import { ErrorMessage } from 'Components/Common';
-import CONFIG from 'CONFIG';
-
-const height = 100 - CONFIG.header.height;
 
 const RelatedNews = ({ news }) => news.map( (n, index) => (
   <NewsRow key={ index } href={ n.url }>
@@ -25,14 +22,8 @@ const RelatedNews = ({ news }) => news.map( (n, index) => (
 function News({ news, handleScroll, isLoading, failError }) {
 
   return (
-    <OverflowDivision
-      as="section"
-      width="50%"
-      onScroll={ handleScroll }
-      height={ `${ height }vh` }
-    >
+    <StickyDivision as="section" width="50%" height="100vh" onScroll={ handleScroll } padding="0 25px 25px">
       <Title>All Related News</Title>
-
       {/* Show message if there is no loading and no news*/}
       { !isLoading && !news.length && <Paragraph center>No Related News</Paragraph> }
 
@@ -40,8 +31,25 @@ function News({ news, handleScroll, isLoading, failError }) {
       { failError && <ErrorMessage error={ failError } center/> }
       { isLoading && <Spinner/> }
 
-    </OverflowDivision>
+    </StickyDivision>
+
   )
+
+  // return (
+  //   <StickyDivision>
+  //     <OverflowDivision as="section" onScroll={ handleScroll } padding="0 20px 25px">
+  //       <Title>All Related News</Title>
+  //       {/* Show message if there is no loading and no news*/}
+  //       { !isLoading && !news.length && <Paragraph center>No Related News</Paragraph> }
+  //
+  //       <RelatedNews news={ news }/>
+  //       { failError && <ErrorMessage error={ failError } center/> }
+  //       { isLoading && <Spinner/> }
+  //
+  //     </OverflowDivision>
+  //   </StickyDivision>
+  //
+  // )
 
 }
 

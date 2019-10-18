@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { OverflowDivision } from 'Components/StyledComponents'
 
 export const NewsRow = styled.a`
   width: 100%;
@@ -7,6 +8,12 @@ export const NewsRow = styled.a`
   text-decoration: none;
   color: #1a202c;
   border-bottom: 1px solid #a0aec0;
+`;
+
+export const StickyDivision = styled(OverflowDivision)`
+  position: sticky;
+  right: 0;
+  top: 0;
 `;
 
 
