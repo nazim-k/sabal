@@ -1,28 +1,5 @@
 import styled, { keyframes } from "styled-components";
 
-export const Headline = styled.h4`
-  text-align: center;
-`;
-
-export const Summany = styled.p`
-  text-align: left;
-  margin: 0;
-`;
-
-export const PublicationDate = styled.time`
-  text-align: right;
-  font-size: .8em;
-  margin-top: 5px;
-`;
-
-export const ScrollDivision = styled.section`
-  height: 140vh;
-  width: 50%;
-  padding: 0 20px 40px;
-  box-sizing: border-box;
-  overflow-y: scroll;
-`;
-
 export const NewsRow = styled.a`
   width: 100%;
   height: auto;

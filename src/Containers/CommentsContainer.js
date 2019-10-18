@@ -1,20 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import Comments from '../Components/Company/Comments';
+import Comments from 'Components/Company/Comments';
 
-const getCommentsByTicker = (state, ticker) => state.companyComments[ticker];
+const getCommentsByTicker = (state, ticker) => state.comments[ticker];
 const getComments = createSelector(
   [ getCommentsByTicker ],
   comments => comments || []
 );
-const CompanyComments = ({ companyComments: comments }) => <Comments comments={ comments }/>;
+const CommentsContainer = ({ comments }) => <Comments comments={ comments }/>;
 
 export default connect(
   (state, ownProps) => {
     const { ticker } = ownProps;
     return {
-      companyComments: getComments(state, ticker),
+      comments: getComments(state, ticker),
     }
   }
-)(CompanyComments)
+)(CommentsContainer)

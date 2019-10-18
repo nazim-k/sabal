@@ -1,17 +1,16 @@
 import React, { useEffect } from 'react';
-import { createSelector } from "reselect/lib/index";
-import { allCompaniesActionCreators } from "../actionCreators";
+import PropTypes from 'prop-types';
+import { createSelector } from "reselect";
+import { companiesActionCreators } from "actionCreators";
 import { connect } from "react-redux";
-import { Companies } from '../Components';
-import { transformArrayOfObjectsToRows } from '../helpers';
+import { Companies } from 'Components';
+import { transformArrayOfObjectsToRows } from 'helpers';
 
 function CompaniesContainer(props) {
 
   const {
     loadAllCompanies,
     shouldLoadAllCompanies,
-    nextCompaniesPage,
-    prevCompaniesPage,
     ...restProps
   } = props;
 
@@ -23,6 +22,15 @@ function CompaniesContainer(props) {
   return <Companies { ...restProps }/>
 
 }
+
+CompaniesContainer.defaultProps = {
+  shouldLoadAllCompanies: true
+};
+
+CompaniesContainer.propTypes = {
+  shouldLoadAllCompanies: PropTypes.bool.isRequired,
+  loadAllCompanies: PropTypes.func.isRequired,
+};
 
 const getCurrentPageData = ({ data, currentPageIndex }) => ({ data, currentPageIndex });
 const getCompaniesAndLinks = createSelector(
@@ -43,15 +51,20 @@ const getCompaniesAndLinks = createSelector(
 
 export default connect(
   ({ companies }) => {
-    const { isLoading, failError } = companies;
+    const { currentPageIndex, nextPage, isLoading, failError } = companies;
     const { result, links } = getCompaniesAndLinks(companies);
+    console.group('COMPANIES CONTAINER MAP STATE');
+    console.dir(companies);
+    console.groupEnd();
     return {
       companies: result,
       links,
+      currentPageIndex,
+      nextPage,
       shouldLoadAllCompanies: !result.length, // Load new content only if there is no content for current page;
       isLoading,
       failError
     }
   },
-  allCompaniesActionCreators
+  companiesActionCreators
 )(CompaniesContainer);

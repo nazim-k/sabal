@@ -1,13 +1,13 @@
-import defaultStock from './defaultStock';
-import allCompanies from './companies';
-import searchCompanies from './searchCompanies';
-import companyInfo from './companyInfo';
-import companyComments from './companyComments';
-import companyNews from './companyNews'
+import stock from './stock';
+import companies from './companies';
+import search from './search';
+import info from './info';
+import comments from './comments';
+import news from './news'
 
-export const defaultStockActionCreators = defaultStock;
-export const allCompaniesActionCreators = allCompanies;
-export const searchCompaniesActionCreators = searchCompanies;
-export const companyInfoActionCreators = companyInfo;
-export const companyCommentsActionCreators = companyComments;
-export const companyNewsActionCreators = companyNews;
+export const stockActionCreators = stock;
+export const companiesActionCreators = companies;
+export const searchActionCreators = search;
+export const infoActionCreators = info;
+export const commentsActionCreators = comments;
+export const newsActionCreators = news;

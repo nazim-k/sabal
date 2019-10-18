@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { companyInfoActionCreators } from '../actionCreators';
+import { infoActionCreators } from 'actionCreators';
 import { createSelector } from 'reselect';
-import { extractRowsFromObject } from '../helpers';
-import CompanyInfo from '../Components/Company/Info';
+import { extractRowsFromObject } from 'helpers';
+import CompanyInfo from 'Components/Company/Info';
 
 const companyData = (companyInfo, company) => companyInfo.data[company] || {};
 const getCompany = createSelector(
@@ -19,7 +20,7 @@ const getCompany = createSelector(
   }
 );
 
-function CompanyInfoContainer({ loadCompanyInfo, ticker, ...props }) {
+function InfoContainer({ loadCompanyInfo, ticker, ...props }) {
 
   useEffect(() => {
     loadCompanyInfo(ticker);
@@ -29,12 +30,21 @@ function CompanyInfoContainer({ loadCompanyInfo, ticker, ...props }) {
 
 }
 
+InfoContainer.defaultProps = {
+  ticker: ''
+};
+
+InfoContainer.propTypes = {
+  ticker: PropTypes.string.isRequired,
+  loadCompanyInfo: PropTypes.func.isRequired
+};
+
 export default connect(
   (state, ownProps) => {
-    const { companyInfo } = state;
+    const { info } = state;
     const { ticker } = ownProps;
-    const { isLoading, failError } = companyInfo;
-    const { company, summary, details } = getCompany(companyInfo, ticker);
+    const { isLoading, failError } = info;
+    const { company, summary, details } = getCompany(info, ticker);
 
     return {
       ticker,
@@ -45,5 +55,5 @@ export default connect(
       failError
     }
   },
-  companyInfoActionCreators
-)(CompanyInfoContainer)
+  infoActionCreators
+)(InfoContainer)

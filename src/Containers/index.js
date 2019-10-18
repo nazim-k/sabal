@@ -1,10 +1,10 @@
-import Home from './Home';
-import Compnaines from './Companies';
-import Search from './Search';
-import CompanyInfo from './CompanyInfo';
-import CommentForm from './CompanyCommentForm';
-import CompanyComments from './CompanyComments';
-import CompnayNews from './CompanyNews';
+import Home from './StockContainer';
+import Compnaines from './CompaniesContainer';
+import Search from './SearchContainer';
+import CompanyInfo from './InfoContainer';
+import CommentForm from './FormContainer';
+import CompanyComments from './CommentsContainer';
+import CompnayNews from './NewsContainer';
 
 export const HomeConainer = Home;
 export const CompaniesContainer = Compnaines;

@@ -1,18 +1,18 @@
 import { combineReducers } from 'redux';
-import defaultStock from './defaultStock';
+import stock from './stock';
 import companies from './companies';
-import searchCompanies from './searchCompnanies';
-import companyInfo from './companyInfo';
-import companyComments from './companyComments';
-import companyNews from './companyNews';
+import search from './search';
+import info from './info';
+import comments from './comments';
+import news from './news';
 
 const rootReducer = combineReducers({
-  defaultStock,
+  stock,
   companies,
-  searchCompanies,
-  companyInfo,
-  companyComments,
-  companyNews
+  search,
+  info,
+  comments,
+  news
 });
 
 export default rootReducer

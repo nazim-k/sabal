@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import { searchCompaniesActionCreators } from '../actionCreators'
-import { Search } from '../Components';
-import { transformArrayOfObjectsToRows } from "../helpers";
-import * as apiServer from '../apiServer';
-import { debouncePause } from '../CONFIG'
+import { searchActionCreators } from 'actionCreators'
+import { Search } from 'Components';
+import { transformArrayOfObjectsToRows } from "helpers";
+import * as apiServer from 'apiServer';
+import CONFIG from 'CONFIG'
+
+const { debouncePause } = CONFIG;
 
 const companiesData = ({ companies }) => companies;
 const getCompanies = createSelector(
@@ -62,10 +65,17 @@ function SearchContainer({ searchCompanies, searchCompaniesSuccess, searchCompan
 
 }
 
+SearchContainer.propTypes = {
+  searchCompanies: PropTypes.func.isRequired,
+  searchCompaniesSuccess: PropTypes.func.isRequired,
+  searchCompaniesFailure: PropTypes.func.isRequired,
+  clearSearchResults: PropTypes.func.isRequired,
+};
+
 export default connect(
-  ({ searchCompanies }) => {
-    const { isLoading, failError } = searchCompanies;
-    const { result: companies, links } = getCompanies(searchCompanies);
+  ({ search }) => {
+    const { isLoading, failError } = search;
+    const { result: companies, links } = getCompanies(search);
     return {
       companies,
       links,
@@ -73,5 +83,5 @@ export default connect(
       failError
     }
   },
-  searchCompaniesActionCreators
+  searchActionCreators
 )(SearchContainer);

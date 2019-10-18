@@ -1,20 +1,5 @@
 import styled from "styled-components";
 
-
-export function getTheme(dark, hover, padding) {
-
-  const theme = dark
-    ? { fontColor: '#edf2f7', bg: 'transparent' }
-    : { fontColor: '#1a202c', bg: 'transparent' };
-
-  return {
-    ...theme,
-    hover,
-    padding
-  }
-
-}
-
 export const StyledTable = styled.table`
   width: 100%;
   border-collapse: collapse;

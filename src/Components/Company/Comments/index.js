@@ -1,9 +1,13 @@
 import React from 'react';
-import { CommentsDiv, Dt, Dd } from './Styled';
-import { FlexSection, Title, Paragraph } from '../../CommonStyled';
+import PropTypes from 'prop-types';
+import { Dt, Dd } from './Styled';
+import { FlexBox, OverflowDivision, Title, Paragraph } from 'Components/StyledComponents';
+import CONFIG from 'CONFIG';
 
-function CommentsWrapper({ comments }) {
-  return <CommentsDiv>
+const { title, style } = CONFIG.company.comments;
+
+function CommentsList({ comments }) {
+  return <OverflowDivision as="section" { ...style }>
     <dl>
       {
         comments.map((comment, index) => [
@@ -12,20 +16,33 @@ function CommentsWrapper({ comments }) {
         ])
       }
     </dl>
-  </CommentsDiv>
+  </OverflowDivision>
 }
 
 function Comments({ comments }) {
 
-  return <FlexSection height="35%" left padding="0 20px">
-    <Title>Comments</Title>
+  return <FlexBox as="section" height="auto" left padding="0 20px" maxHeight="50%">
+    <Title>{ title }</Title>
     {
       comments.length
-        ? <CommentsWrapper comments={ comments }/>
+        ? <CommentsList comments={ comments }/>
         : <Paragraph margin="0">No Comments yet</Paragraph>
     }
-  </FlexSection>;
+  </FlexBox>;
 
 }
+
+Comments.defaultProps = {
+  comments: []
+};
+
+Comments.propTypes = {
+  comments: PropTypes.arrayOf(
+    PropTypes.exact({
+      username: PropTypes.string,
+      comment: PropTypes.string
+    })
+  )
+};
 
 export default Comments;

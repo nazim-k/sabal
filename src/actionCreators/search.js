@@ -5,7 +5,7 @@ import {
   SEARCH_CLEAR_RESULTS
 } from '../actions';
 
-const searchCompanies = () => (({ type: SEARCH_COMPANIES }));
+const searchCompanies = () => ({ type: SEARCH_COMPANIES });
 
 const searchCompaniesSuccess = companies => ({
   type: SEARCH_COMPANIES_SUCCESS,

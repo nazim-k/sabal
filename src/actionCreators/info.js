@@ -7,8 +7,8 @@ import * as apiServer from "../apiServer";
 
 export const loadCompanyInfo = ticker => (dispatch, getState) => {
 
-  const { companyInfo } = getState();
-  const company = companyInfo.data[ ticker ];
+  const { info } = getState();
+  const company = info.data[ ticker ];
 
   if ( company && (new Date() - company.lastUpdate < 86400)) {
     dispatch({ type: LOAD_COMPANY_INFO_SUCCESS });

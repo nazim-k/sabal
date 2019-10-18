@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import CommentForm from '../Components/Company/CommentForm';
-import { companyCommentsActionCreators } from '../actionCreators';
+import CommentForm from 'Components/Company/Form';
+import { commentsActionCreators } from 'actionCreators';
 
 function useInput(initValue) {
   const [ value, setValue ] = useState(initValue);
@@ -14,7 +15,7 @@ function useInput(initValue) {
   return { value, onChange, }
 }
 
-function CompanyCommentFormContainer({ addComment, ticker }) {
+function FormContainer({ addComment, ticker }) {
 
   const username = useInput('');
   const comment = useInput('');
@@ -39,7 +40,16 @@ function CompanyCommentFormContainer({ addComment, ticker }) {
 
 }
 
+FormContainer.defaultProps = {
+  ticker: ''
+};
+
+FormContainer.propTypes = {
+  ticker: PropTypes.string.isRequired,
+  addComment: PropTypes.func.isRequired
+};
+
 export default connect(
   null,
-  companyCommentsActionCreators
-)(CompanyCommentFormContainer)
+  commentsActionCreators
+)(FormContainer)

@@ -1,23 +1,35 @@
 import React from 'react';
-import { ApplicatoinTitle, HeaderLink, activeLinkStyle, Nav, Search } from './Styled';
-import { FlexRow, LinkWrapper } from "../CommonStyled";
 import PropTypes from 'prop-types';
+import { AppName, Link, Search } from './Styled';
+import { LinkWrapper, FlexBox } from "Components/StyledComponents";
+import CONFIG from 'CONFIG';
+
+const { appName, navLinks, activeLinkStyle, searchIcon, height, fontSize, sideIndentation } = CONFIG.header;
+const links = Object.entries(navLinks);
 
 function Header({ openSearch }) {
 
-  return <FlexRow bg="#1a202c" height="10vh" middle color="#f7fafc" between>
+  return <FlexBox as="header" row bg="#1a202c" height={ `${ height }vh` } middle color="#f7fafc" between>
 
-    <ApplicatoinTitle>
-      <LinkWrapper to="/" theme="light">Sabal</LinkWrapper>
-    </ApplicatoinTitle>
+    <AppName>
+      <LinkWrapper to="/" theme="light">{ appName }</LinkWrapper>
+    </AppName>
 
-    <Nav>
-      <HeaderLink exact to="/" activeStyle={ activeLinkStyle }>Home</HeaderLink>
-      <HeaderLink exact to="/companies" activeStyle={ activeLinkStyle }>Companies</HeaderLink>
-      <Search src="/icons/search.svg" alt="search" onClick={ openSearch }/>
-    </Nav>
+    <FlexBox as="nav" row width="auto" evenly middle padding={ `0 ${ sideIndentation }` }>
+      {
+        links.map( ([text, link]) => (
+          <Link key={ text } exact to={ link } activeStyle={ activeLinkStyle }>
+            { text }
+          </Link>
+        ))
+      }
+      <FlexBox row fontSize={ fontSize } color="#f7fafc" as="figure" height="auto" width="auto" margin="0" middle cursor="pointer" onClick={ openSearch }>
+        <figcaption>Search</figcaption>
+        <Search src={ searchIcon } alt="search"/>
+      </FlexBox>
+    </FlexBox>
 
-  </FlexRow>
+  </FlexBox>
 
 }
 

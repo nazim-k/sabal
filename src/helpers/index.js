@@ -1,6 +1,7 @@
-import { companiesTable } from '../CONFIG';
+import CONFIG from 'CONFIG';
 
-const { columns, link } = companiesTable;
+const { columns, link } = CONFIG.table.compnaies;
+const { keys } = CONFIG.company.info;
 
 export function transformArrayOfObjectsToRows(companies) {
   const result = [];
@@ -22,17 +23,6 @@ export function transformArrayOfObjectsToRows(companies) {
   }
 }
 
-const keys = {
-  ticker: 'Ticker',
-  name: 'Name',
-  legal_name: 'Legal Name',
-  stock_exchange: 'Stock Exchange',
-  ceo: 'CEO Name',
-  entity_status: 'Entity Status',
-  hq_country: 'Head Quarters Country',
-  sector: 'Sectors'
-};
-
 export function extractRowsFromObject(data) {
   const result = [];
   try {
@@ -46,4 +36,13 @@ export function extractRowsFromObject(data) {
       result: [ [ nameOfValue, value ] ]
     `)
   }
+}
+
+export function preloadedState() {
+  const comments = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    let ticker = localStorage.key(i);
+    comments[ticker] = JSON.parse(localStorage.getItem(ticker));
+  }
+  return comments
 }

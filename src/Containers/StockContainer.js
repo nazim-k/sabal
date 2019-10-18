@@ -1,8 +1,7 @@
 import { createSelector } from "reselect/lib/index";
 import { connect } from "react-redux";
-import { defaultStockActionCreators } from "../actionCreators";
-import { Home } from '../Components'
-
+import { stockActionCreators } from "actionCreators";
+import { Stock } from 'Components'
 
 const getLastUpdate = defaultStock => defaultStock.lastUpdate;
 const shouldUpdateDefaultStock = createSelector(
@@ -11,9 +10,9 @@ const shouldUpdateDefaultStock = createSelector(
 );
 
 export default connect(
-  ({ defaultStock }) => ({
-    shouldUpdateDefaultStock: shouldUpdateDefaultStock(defaultStock),
-    ...defaultStock
+  ({ stock }) => ({
+    shouldUpdateDefaultStock: shouldUpdateDefaultStock(stock),
+    ...stock
   }),
-  defaultStockActionCreators
-)(Home);
+  stockActionCreators
+)(Stock);

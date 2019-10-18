@@ -5,21 +5,13 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import './App.css';
 import configureStore from './configureStore';
 import { Header, Company } from './Components';
-import { HomeConainer, CompaniesContainer, SearchContainer } from './Containers';
+import { HomeConainer, CompaniesContainer, SearchContainer } from 'Containers';
+import { preloadedState } from 'helpers'
 
-function preloadedState() {
-  const comments = {};
-  for (let i = 0; i < localStorage.length; i++) {
-    let ticker = localStorage.key(i);
-    comments[ticker] = JSON.parse(localStorage.getItem(ticker));
-  }
-  return comments
-}
 
-const store = configureStore({ companyComments: preloadedState() });
+const store = configureStore({ comments: preloadedState() });
 
 function App() {
 

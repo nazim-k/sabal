@@ -6,7 +6,7 @@ import {
 import * as apiServer from '../apiServer';
 
 const loadCompanyNews = ({ ticker, shouldUpdateExistingNews=false }) => (dispatch, getState) => {
-  const { nextPage, data } = getState().companyNews;
+  const { nextPage, data } = getState().news;
 
   if (!shouldUpdateExistingNews && data[ticker]) {
 

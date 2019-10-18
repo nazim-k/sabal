@@ -1,58 +1,46 @@
 import React from 'react';
 import { ThemeProvider } from "styled-components";
-import { getTheme, StyledTable, StyledTr, StyledTd } from './Styled';
-import { TextSkeleton } from '../../CommonStyled/index'
 import { withRouter } from "react-router-dom";
+import PropTypes from 'prop-types';
+import Thead from './Thead';
+import Trow from './Trow';
+import Skeleton from 'Components/Common/Skeleton';
+import { StyledTable } from './Styled';
 
 
-function Theader({ header }) {
+function getTheme(dark, hover, padding) {
 
-  if (!header) return null;
+  const theme = dark
+    ? { fontColor: '#edf2f7', bg: 'transparent' }
+    : { fontColor: '#1a202c', bg: 'transparent' };
 
-  return (
-    <thead>
-      <tr>
-        {
-          header.map( (header, index) => (
-            <StyledTd as="th" key={ index } left={ !index }>{ header }</StyledTd>
-          ))
-        }
-      </tr>
-    </thead>
-  )
-
-}
-
-function Row({ row, onClick }) {
-
-  return <StyledTr onClick={ onClick }>
-    {
-      row.map( (d, index) => (
-        <StyledTd key={ index } left={ !index }>{ d }</StyledTd>
-      ))
-    }
-  </StyledTr>
+  return {
+    ...theme,
+    hover,
+    padding
+  }
 
 }
 
-function Table({ header, rows, links, onRowClick, dark, padding, loadingHeight, loadingWidth, history, isLoading }) {
+function Table({ header, rows, links, onRowClick, history, isLoading, dark, padding, ...props }) {
 
   function handleRowClick (ticker) {
     if (links) history.push(`/companies/${ticker}`);
-    if (onRowClick) onRowClick();
+    if (onRowClick) onRowClick(); // Addition functionality  on row click
   }
 
   if (isLoading) return rows.map( (row, index) => (
-    <TextSkeleton key={ index } divHeight={ loadingHeight } divWidth={ loadingWidth }/>
+    <Skeleton key={ index } { ...props } />
   ));
 
-  return <ThemeProvider theme={ getTheme(dark, !!links, padding) }>
+  // If there is no links than table should be without row hover effect
+  return <ThemeProvider theme={ getTheme(dark, !!links.length, padding) }>
     <StyledTable>
-      <Theader header={ header }/>
+      <Thead header={ header }/>
       <tbody>
         {
           rows.map( (row, index)=> (
-            <Row
+            <Trow
               key={ index }
               row={ row }
               onClick={ () => links && handleRowClick( links[index] ) }
@@ -67,9 +55,24 @@ function Table({ header, rows, links, onRowClick, dark, padding, loadingHeight, 
 
 Table.defaultProps = {
   rows: [],
+  links: [],
   isLoading: false,
-  loadingWidth: '80%',
-  loadingHeight: 'auto'
+};
+
+Table.propTypes = {
+  header: PropTypes.array,
+  rows: PropTypes.arrayOf(PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ])
+  )).isRequired,
+  links: PropTypes.array,
+  onRowClick: PropTypes.func,
+  history: PropTypes.object.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  dark: PropTypes.bool,
+  padding: PropTypes.string
 };
 
 export default withRouter(Table);

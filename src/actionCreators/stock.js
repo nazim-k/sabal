@@ -1,6 +1,8 @@
 import { LOAD_DEFAULT_STOCK, LOAD_DEFAULT_STOCK_SUCCESS, LOAD_DEFAULT_STOCK_FAILURE } from '../actions';
-import { defaultStockTickers } from '../CONFIG';
+import CONFIG from 'CONFIG';
 import * as apiServer from '../apiServer';
+
+const { defaultStockTickers } = CONFIG;
 
 const loadDefaultStock = ticker => dispatch => {
 

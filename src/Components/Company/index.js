@@ -1,37 +1,50 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
-import { FlexColumn, FlexRow, Title } from '../CommonStyled';
-import News from './News';
-import { CompanyInfoContainer, CompanyCommentFormContainer, CompanyCommentsContainer, CompnayNewsContainer } from '../../Containers';
+import PropTypes from 'prop-types';
+import { FlexBox, OverflowDivision } from 'Components/StyledComponents';
+import {
+  CompanyInfoContainer,
+  CompanyCommentFormContainer,
+  CompanyCommentsContainer,
+  CompnayNewsContainer
+} from 'Containers';
+import CONFIG from 'CONFIG';
 
-const NewsContainer = styled.section`
-  height: 140vh;
-  width: 50%;
-  padding: 0 20px 40px;
-  box-sizing: border-box;
-  overflow-y: scroll;
-`;
-
+const height = 100 - CONFIG.header.height;
 
 function Company(props) {
+  const { company } = props.match.params;
+
   useEffect(() => {
     window.scrollTo(0,0);
   }, []);
-  const { company } = props.match.params;
 
-  return <FlexRow height="auto" wrapRow>
-    <FlexColumn key="companyInfo" between width="50%" padding="0 0 25px">
+  return <FlexBox row wrapRow>
 
-      <CompanyInfoContainer ticker={ company }/>
-      <CompanyCommentsContainer ticker={ company }/>
-      <CompanyCommentFormContainer ticker={ company }/>
+    <FlexBox between width="50%" height={ `${ height }vh` } padding="0 0 25px">
 
-    </FlexColumn>
+      <OverflowDivision>
+        <CompanyInfoContainer ticker={ company }/>
+        <CompanyCommentsContainer ticker={ company }/>
+        <CompanyCommentFormContainer ticker={ company }/>
+      </OverflowDivision>
+
+    </FlexBox>
 
     <CompnayNewsContainer ticker={ company }/>
 
-
-  </FlexRow>
+  </FlexBox>
 }
+
+Company.defaultProps = {
+  match: { params: '' }
+};
+
+Company.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      company: PropTypes.string.isRequired
+    })
+  })
+};
 
 export default Company;

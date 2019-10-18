@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import News from '../Components/Company/News';
-import { companyNewsActionCreators } from '../actionCreators';
+import News from 'Components/Company/News';
+import { newsActionCreators } from 'actionCreators';
 
-function CompanyNewsContainer({ loadCompanyNews, nextPage, ticker, ...props }) {
+function NewsContainer({ loadCompanyNews, nextPage, ticker, ...props }) {
 
   function handleScroll({ target }) {
     //Load New Related news when user scroll news to the bottom
@@ -14,15 +15,24 @@ function CompanyNewsContainer({ loadCompanyNews, nextPage, ticker, ...props }) {
 
   useEffect(() => {
     loadCompanyNews({ ticker });
-  }, [ loadCompanyNews ]);
+  }, [ loadCompanyNews, ticker ]);
 
   return <News { ...props } handleScroll={ handleScroll }/>
 }
 
+NewsContainer.defaultProps = {
+  ticker: ''
+};
+
+NewsContainer.propTypes = {
+  ticker: PropTypes.string.isRequired,
+  loadCompanyNews: PropTypes.func.isRequired,
+};
+
 export default connect(
   (state, ownProps) => {
     const { ticker } = ownProps;
-    const { isLoading, failError, data, nextPage } = state.companyNews;
+    const { isLoading, failError, data, nextPage } = state.news;
     const news = data[ticker] || [];
     return {
       news,
@@ -31,5 +41,5 @@ export default connect(
       failError
     }
   },
-  companyNewsActionCreators
-)(CompanyNewsContainer)
+  newsActionCreators
+)(NewsContainer)

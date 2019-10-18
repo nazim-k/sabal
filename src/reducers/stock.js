@@ -1,14 +1,15 @@
 import produce from 'immer';
-import { setLoadingProps, setLoadingSuccessProps, setLoadingErrorProps } from './helpers'
-import { defaultStockTickers } from '../CONFIG';
+import { setLoadingProps, setLoadingSuccessProps, setLoadingErrorProps } from './helpers';
 import {
   LOAD_DEFAULT_STOCK,
   LOAD_DEFAULT_STOCK_SUCCESS,
   LOAD_DEFAULT_STOCK_FAILURE
 } from '../actions';
+import CONFIG from 'CONFIG';
+const defaultStockTickers = CONFIG.defaultStockTickers;
 
 const initialState = {
-  data: defaultStockTickers,
+  data: defaultStockTickers, // In order to render cards with preloader pass default stock tickers
   lastUpdate: null,
   isLoading: true,
   failError: null

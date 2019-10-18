@@ -16,8 +16,8 @@ const initialState = {
 There is no need to normalize Company page data (Company Info, Comments, Related News)
 Because the only query we need is - companyPageData[ticker];
 So we can separate company page data into 3 reduces and grab data by ticker:
-1. companyInfo
-2. companyComments
+1. info
+2. comments
 3. news
  */
 

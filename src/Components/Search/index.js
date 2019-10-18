@@ -1,47 +1,42 @@
 import React from 'react';
-import {
-  ComponentContainer,
-  Input,
-  InputContainer,
-  SearchIcon,
-  CloseIcon
-} from './Styled';
-import { FlexColumn, FlexRow, Paragraph } from '../CommonStyled';
-import { Table } from '../CommonStyled';
-import { companiesTable } from '../../CONFIG';
+import PropTypes from 'prop-types';
+import { FixedDivision, Input, SearchIcon, CloseIcon } from './Styled';
+import { FlexBox, Paragraph } from 'Components/StyledComponents';
+import { Table } from 'Components/Common';
+import CONFIG from 'CONFIG';
 
-const { header } = companiesTable;
-
+const { header } = CONFIG.table.compnaies;
+const { placeholder, icon, label, infoMsg } = CONFIG.search;
 
 function Search({ companies, links, query, setQuery, closeSearch, isLoading, failError }) {
 
-  return <ComponentContainer>
+  return <FixedDivision>
 
-    <FlexColumn width="60%" margin="auto" style={{ minWidth: '700px'  }}>
+    <FlexBox width="60%" margin="auto" minWidth="700px" >
 
-      <InputContainer>
-        <Input placeholder="Enter a symbol or a keyword" value={ query } onChange={ setQuery }/>
-        <SearchIcon src="/icons/search-green.svg" alt="search"/>
-      </InputContainer>
+      <FlexBox row height="auto" borderBottom="1px solid #6a6a6a">
+        <Input placeholder={ placeholder } value={ query } onChange={ setQuery }/>
+        <SearchIcon src={ icon } alt="search"/>
+      </FlexBox>
 
-      <FlexRow height="auto" between margin="0 0 15px">
-        <Paragraph green >Search</Paragraph>
-        <Paragraph gray>Submit entry for keyword result</Paragraph>
-      </FlexRow>
+      <FlexBox row height="auto" between margin="0 0 15px">
+        <Paragraph green >{ label }</Paragraph>
+        <Paragraph gray>{ infoMsg }</Paragraph>
+      </FlexBox>
 
-      <FlexRow height="auto" between margin="0 0 15px">
+      <FlexBox as="section" row height="auto" between margin="0 0 15px">
         <Paragraph gray margin="0" padding="0">
           {
             isLoading
               ? 'Searching...'
-              : companies.length
+              : query
               ? `Results: ${ companies.length }`
               : failError
               ? 'Error'
               : ''
           }
         </Paragraph>
-      </FlexRow>
+      </FlexBox>
 
       {
         companies.length && <Table
@@ -54,7 +49,7 @@ function Search({ companies, links, query, setQuery, closeSearch, isLoading, fai
         />
       }
 
-    </FlexColumn>
+    </FlexBox>
 
     <CloseIcon
       src="/icons/close.svg"
@@ -65,12 +60,32 @@ function Search({ companies, links, query, setQuery, closeSearch, isLoading, fai
       }}
     />
 
-  </ComponentContainer>
+  </FixedDivision>
 
 }
 
 Search.defaultProps = {
+  companies: [],
+  links: [],
+  query: '',
   isLoading: false,
+  failError: null
+};
+
+Search.propTypes = {
+  companies: PropTypes.arrayOf(PropTypes.array).isRequired,
+  links: PropTypes.arrayOf(PropTypes.string).isRequired,
+  query: PropTypes.string.isRequired,
+  setQuery: PropTypes.func.isRequired,
+  closeSearch: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  failError: PropTypes.oneOfType([
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object,
+    ]).isRequired,
+    PropTypes.oneOf([null])
+  ])
 };
 
 export default Search;
