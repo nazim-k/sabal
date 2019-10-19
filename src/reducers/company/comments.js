@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { ADD_COMMENT } from '../actions';
+import { ADD_COMMENT } from 'actions';
 
 const initialState = {};
 

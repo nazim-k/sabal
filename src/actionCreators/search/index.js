@@ -3,7 +3,7 @@ import {
   SEARCH_COMPANIES_SUCCESS,
   SEARCH_COMPANIES_FAILURE,
   SEARCH_CLEAR_RESULTS
-} from '../actions';
+} from 'actions';
 
 const searchCompanies = () => ({ type: SEARCH_COMPANIES });
 

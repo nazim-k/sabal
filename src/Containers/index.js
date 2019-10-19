@@ -1,15 +1,17 @@
-import Stock from './StockContainer';
-import Compnaines from './CompaniesContainer';
-import Search from './SearchContainer';
-import Info from './InfoContainer';
-import Form from './FormContainer';
-import Comments from './CommentsContainer';
-import News from './NewsContainer';
+import Stock from './Stock';
+import Compnaines from './Companies';
+import Search from './Search';
+import Company from './Company';
+// import Info from './Company/Info';
+// import Form from './Company/Form';
+// import Comments from './Company/Comments';
+// import News from './Company/News';
 
 export const StockConainer = Stock;
 export const CompaniesContainer = Compnaines;
 export const SearchContainer = Search;
-export const InfoContainer = Info;
-export const FormContainer = Form;
-export const CommentsContainer = Comments;
-export const NewsContainer = News;
+export const CompnayContainer = Company;
+export const InfoContainer = Company.Info;
+export const FormContainer = Company.Form;
+export const CommentsContainer = Company.Comments;
+export const NewsContainer = Company.News;

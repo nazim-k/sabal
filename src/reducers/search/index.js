@@ -4,8 +4,8 @@ import {
   SEARCH_COMPANIES_SUCCESS,
   SEARCH_COMPANIES_FAILURE,
   SEARCH_CLEAR_RESULTS
-} from '../actions';
-import { setLoadingProps, setLoadingSuccessProps, setLoadingErrorProps } from './helpers'
+} from 'actions';
+import { setLoadingProps, setLoadingSuccessProps, setLoadingErrorProps } from '../helpers'
 
 const initialState = {
   companies: [],

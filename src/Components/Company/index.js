@@ -1,12 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FlexBox } from 'Components/StyledComponents';
-import {
-  InfoContainer,
-  FormContainer,
-  CommentsContainer,
-  NewsContainer
-} from 'Containers';
+import { CompnayContainer } from 'Containers';
 
 function Company(props) {
   const { company } = props.match.params;
@@ -19,13 +14,13 @@ function Company(props) {
 
     <FlexBox between width="50%" height="auto" padding="0 0 25px" borderRight="1px solid #a0aec0">
 
-      <InfoContainer ticker={ company }/>
-      <CommentsContainer ticker={ company }/>
-      <FormContainer ticker={ company }/>
+      <CompnayContainer.Info ticker={ company }/>
+      <CompnayContainer.Comments ticker={ company }/>
+      <CompnayContainer.Form ticker={ company }/>
 
     </FlexBox>
 
-    <NewsContainer ticker={ company }/>
+    <CompnayContainer.News ticker={ company }/>
 
   </FlexBox>
 }

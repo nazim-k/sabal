@@ -4,8 +4,8 @@ import {
   LOAD_COMPANIES_FAILURE,
   NEXT_COMPANIES_PAGE,
   PREVIOUS_COMPANIES_PAGE
-} from '../actions';
-import * as apiServer from "../apiServer";
+} from 'actions';
+import * as apiServer from 'apiServer';
 
 
 const loadAllCompanies = () => (dispatch, getState) => {

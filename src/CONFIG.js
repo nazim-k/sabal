@@ -1,9 +1,14 @@
+/*
+
+default comments. You can add it in company.comments.defaultComments = { [ ticker ]: [ comments ] }
 const comments = [
   { username: 'user1', comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' },
   { username: 'user2', comment: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' },
   { username: 'user3', comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices. Nec feugiat nisl pretium fusce id velit ut tortor pretium.' },
   { username: 'user4', comment: 'Id donec ultrices tincidunt arcu non sodales. Sit amet est placerat in egestas erat imperdiet sed. Molestie a iaculis at erat pellentesque adipiscing commodo. Integer quis auctor elit sed vulputate mi sit amet. Cursus mattis molestie a iaculis at erat pellentesque adipiscing commodo.' }
 ];
+
+ */
 
 export default {
 
@@ -24,7 +29,7 @@ export default {
   },
 
   stock: {
-    title: 'Stock Prices',
+    title: 'stock Prices',
     card: {
       style: {
         bg: '#fff', // background-color
@@ -70,7 +75,7 @@ export default {
         ticker: 'Ticker',
         name: 'Name',
         legal_name: 'Legal Name',
-        stock_exchange: 'Stock Exchange',
+        stock_exchange: 'stock Exchange',
         ceo: 'CEO Name',
         entity_status: 'Entity Status',
         hq_country: 'Head Quarters Country',
@@ -80,7 +85,7 @@ export default {
     },
     comments: {
       title: 'Comments',
-      defaultComments: { AAPL: comments },
+      defaultComments: {},
       style: {
         textAlign: 'left',
         padding: '5px 0',
@@ -101,7 +106,7 @@ export default {
   table: {
     compnaies: {
       columns: [ 'name', 'ticker', 'lei' ],
-      header: [ 'Company\'s common name', 'Stock market ticker', 'Legal Entity Identifier' ],
+      header: [ 'Company\'s common name', 'stock market ticker', 'Legal Entity Identifier' ],
       link: 'ticker'
     }
   },

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import News from 'Components/Company/News';
-import { newsActionCreators } from 'actionCreators';
+import { companyActionCreators } from 'actionCreators';
 
 function NewsContainer({ loadCompanyNews, nextPage, ticker, ...props }) {
 
@@ -32,7 +32,7 @@ NewsContainer.propTypes = {
 export default connect(
   (state, ownProps) => {
     const { ticker } = ownProps;
-    const { isLoading, failError, data, nextPage } = state.news;
+    const { isLoading, failError, data, nextPage } = state.company.news;
     const news = data[ticker] || [];
     return {
       news,
@@ -41,5 +41,5 @@ export default connect(
       failError
     }
   },
-  newsActionCreators
+  companyActionCreators.news
 )(NewsContainer)

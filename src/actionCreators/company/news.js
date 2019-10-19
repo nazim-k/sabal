@@ -2,11 +2,12 @@ import {
   LOAD_COMPANY_NEWS,
   LOAD_COMPANY_NEWS_SUCCESS,
   LOAD_COMPANY_NEWS_FAILURE,
-} from '../actions';
-import * as apiServer from '../apiServer';
+} from 'actions';
+import * as apiServer from 'apiServer';
 
 const loadCompanyNews = ({ ticker, shouldUpdateExistingNews=false }) => (dispatch, getState) => {
-  const { nextPage, data } = getState().news;
+  const { company } = getState();
+  const { nextPage, data } = company.news;
 
   if (!shouldUpdateExistingNews && data[ticker]) {
 

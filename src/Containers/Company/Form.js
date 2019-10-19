@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CommentForm from 'Components/Company/Form';
-import { commentsActionCreators } from 'actionCreators';
+import { companyActionCreators } from 'actionCreators';
 
 function useInput(initValue) {
   const [ value, setValue ] = useState(initValue);
@@ -51,5 +51,5 @@ FormContainer.propTypes = {
 
 export default connect(
   null,
-  commentsActionCreators
+  companyActionCreators.comments
 )(FormContainer)

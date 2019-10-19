@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { infoActionCreators } from 'actionCreators';
+import { companyActionCreators } from 'actionCreators';
 import { createSelector } from 'reselect';
 import { extractRowsFromObject } from 'helpers';
 import CompanyInfo from 'Components/Company/Info';
@@ -41,7 +41,7 @@ InfoContainer.propTypes = {
 
 export default connect(
   (state, ownProps) => {
-    const { info } = state;
+    const { info } = state.company;
     const { ticker } = ownProps;
     const { isLoading, failError } = info;
     const { company, summary, details } = getCompany(info, ticker);
@@ -55,5 +55,5 @@ export default connect(
       failError
     }
   },
-  infoActionCreators
+  companyActionCreators.info
 )(InfoContainer)
