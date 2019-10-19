@@ -59,7 +59,7 @@ export const getCompanyInfo = async ticker => {
 
 export const getCompanyNews = async (ticker, nextPage) => {
 
-  const { data } = await axios.get(`https://api-v2.intrinio.com/companies/${'KO'}/news`,  {
+  const { data } = await axios.get(`https://api-v2.intrinio.com/companies/${ticker}/news`,  {
     params: {
       api_key,
       page_size: 20,
