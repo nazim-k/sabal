@@ -1,10 +1,10 @@
 import produce from 'immer';
-import { setLoadingProps, setLoadingSuccessProps, setLoadingErrorProps } from './helpers';
+import { setLoadingProps, setLoadingSuccessProps, setLoadingErrorProps } from '../helpers';
 import {
   LOAD_DEFAULT_STOCK,
   LOAD_DEFAULT_STOCK_SUCCESS,
   LOAD_DEFAULT_STOCK_FAILURE
-} from '../actions';
+} from '../../actions/index';
 import CONFIG from 'CONFIG';
 const defaultStockTickers = CONFIG.defaultStockTickers;
 
