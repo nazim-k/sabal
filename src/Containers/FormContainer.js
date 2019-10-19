@@ -12,7 +12,7 @@ function useInput(initValue) {
       : e.target.value;
     setValue(value);
   };
-  return { value, onChange, }
+  return { value, onChange }
 }
 
 function FormContainer({ addComment, ticker }) {

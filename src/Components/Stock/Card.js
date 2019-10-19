@@ -5,7 +5,7 @@ import { FlexBox, Title } from 'Components/StyledComponents';
 import PropTypes from 'prop-types';
 import CONFIG from 'CONFIG';
 
-const { style } = CONFIG.home.card;
+const { style } = CONFIG.stock.card;
 
 function CardBody({ name, open, high, low, isLoading }) {
 
