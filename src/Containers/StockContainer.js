@@ -1,12 +1,15 @@
 import { createSelector } from "reselect/lib/index";
 import { connect } from "react-redux";
 import { stockActionCreators } from "actionCreators";
-import { Stock } from 'Components'
+import { Stock } from 'Components';
+import CONFIG from 'CONFIG';
+
+const updateFrequency = CONFIG.stock.updateFrequency*60*60;
 
 const getLastUpdate = defaultStock => defaultStock.lastUpdate;
 const shouldUpdateDefaultStock = createSelector(
   [ getLastUpdate ],
-  ( lastUpdate ) => !lastUpdate || new Date() - lastUpdate > 86400
+  ( lastUpdate ) => !lastUpdate || new Date() - lastUpdate > updateFrequency
 );
 
 export default connect(

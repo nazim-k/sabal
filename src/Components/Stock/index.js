@@ -6,7 +6,7 @@ import CONFIG from 'CONFIG';
 import Card from './Card';
 
 const height = 100 - CONFIG.header.height;
-const { title } = CONFIG.home;
+const { title } = CONFIG.stock;
 
 function Stock({ data, loadDefaultStock, shouldUpdateDefaultStock, isLoading, failError }) {
 

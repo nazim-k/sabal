@@ -23,7 +23,7 @@ export default {
     sideIndentation: '5%'
   },
 
-  home: {
+  stock: {
     title: 'Stock Prices',
     card: {
       style: {
@@ -35,7 +35,8 @@ export default {
         boxShadow: '0px 5px 10px #cbd5e0',
         minWidth: '150px'
       }
-    }
+    },
+    updateFrequency: 24 //hours
   },
 
   companies: {
@@ -74,7 +75,8 @@ export default {
         entity_status: 'Entity Status',
         hq_country: 'Head Quarters Country',
         sector: 'Sectors'
-      }
+      },
+      updateFrequency: 24 //hours
     },
     comments: {
       title: 'Comments',

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FixedDivision, Input, SearchIcon, CloseIcon } from './Styled';
 import { FlexBox, Paragraph } from 'Components/StyledComponents';
@@ -9,13 +9,18 @@ const { header } = CONFIG.table.compnaies;
 const { placeholder, icon, label, infoMsg } = CONFIG.search;
 
 function Search({ companies, links, query, setQuery, closeSearch, isLoading, failError }) {
+  const searchInput = React.createRef();
+
+  useEffect(() => {
+    searchInput.current.focus();
+  }, [ searchInput ]);
 
   return <FixedDivision>
 
     <FlexBox width="60%" margin="auto" minWidth="700px" >
 
       <FlexBox row height="auto" borderBottom="1px solid #6a6a6a">
-        <Input placeholder={ placeholder } value={ query } onChange={ setQuery }/>
+        <Input ref={ searchInput } placeholder={ placeholder } value={ query } onChange={ setQuery }/>
         <SearchIcon src={ icon } alt="search"/>
       </FlexBox>
 
