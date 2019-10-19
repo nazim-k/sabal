@@ -1,7 +1,7 @@
 import { api_key } from "API_KEY";
-import axios from "axios/index";
+import axios from "axios";
 
-// Stock request helpers
+// stock request helpers
 const transormStockResponse = data => {
   // Extract needed data from api server response.
   const { adj_open: open, adj_low: low, adj_high: high } = data.stock_prices[0];

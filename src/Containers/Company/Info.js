@@ -41,7 +41,7 @@ InfoContainer.propTypes = {
 
 export default connect(
   (state, ownProps) => {
-    const { info } = state;
+    const { info } = state.company;
     const { ticker } = ownProps;
     const { isLoading, failError } = info;
     const { company, summary, details } = getCompany(info, ticker);

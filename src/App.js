@@ -11,7 +11,11 @@ import { StockConainer, CompaniesContainer, SearchContainer } from 'Containers';
 import { preloadedState } from 'helpers'
 
 
-const store = configureStore({ comments: preloadedState() });
+const store = configureStore({
+  company: {
+    comments: preloadedState()
+  }
+});
 
 function App() {
 

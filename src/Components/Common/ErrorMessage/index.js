@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FlexBox, Paragraph } from 'Components/StyledComponents/index';
+import { FlexBox, Paragraph } from 'Components/StyledComponents';
 import CONFIG from 'CONFIG';
 
 const { errorMessage } = CONFIG;

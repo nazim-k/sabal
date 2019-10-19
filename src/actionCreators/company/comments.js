@@ -1,4 +1,4 @@
-import { ADD_COMMENT } from '../actions';
+import { ADD_COMMENT } from 'actions';
 
 const addComment = ({ username, comment, ticker }) => ({
   type: ADD_COMMENT,

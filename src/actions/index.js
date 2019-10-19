@@ -1,6 +1,6 @@
 /*
 There is four main data structure
-1. Stock - rendered by Stock component.
+1. stock - rendered by stock component.
 2. Companies - rendered by Companies component.
 3. Company info - company info rendered by Company component.
 4. Comments - all comments rendered by Company component.

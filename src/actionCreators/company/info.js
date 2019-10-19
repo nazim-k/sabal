@@ -2,16 +2,16 @@ import {
   LOAD_COMPANY_INFO,
   LOAD_COMPANY_INFO_SUCCESS,
   LOAD_COMPANY_INFO_FAILURE
-} from '../actions';
-import * as apiServer from "../apiServer";
+} from 'actions';
+import * as apiServer from "apiServer";
 import CONFIG from 'CONFIG';
 
 const updateFrequency = CONFIG.company.info.updateFrequency*60*60;
 
 export const loadCompanyInfo = ticker => (dispatch, getState) => {
 
-  const { info } = getState();
-  const company = info.data[ ticker ];
+  const state = getState();
+  const company = state.company.info.data[ ticker ];
 
   if ( company && (new Date() - company.lastUpdate < updateFrequency)) {
     dispatch({ type: LOAD_COMPANY_INFO_SUCCESS });

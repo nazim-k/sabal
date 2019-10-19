@@ -32,7 +32,7 @@ NewsContainer.propTypes = {
 export default connect(
   (state, ownProps) => {
     const { ticker } = ownProps;
-    const { isLoading, failError, data, nextPage } = state.news;
+    const { isLoading, failError, data, nextPage } = state.company.news;
     const news = data[ticker] || [];
     return {
       news,

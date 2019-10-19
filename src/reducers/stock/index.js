@@ -4,7 +4,7 @@ import {
   LOAD_DEFAULT_STOCK,
   LOAD_DEFAULT_STOCK_SUCCESS,
   LOAD_DEFAULT_STOCK_FAILURE
-} from '../../actions/index';
+} from 'actions';
 import CONFIG from 'CONFIG';
 const defaultStockTickers = CONFIG.defaultStockTickers;
 

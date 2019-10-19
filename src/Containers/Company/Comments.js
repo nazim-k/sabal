@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import Comments from 'Components/Company/Comments';
 
-const getCommentsByTicker = (state, ticker) => state.comments[ticker];
+const getCommentsByTicker = (state, ticker) => state.company.comments[ticker];
 const getComments = createSelector(
   [ getCommentsByTicker ],
   comments => comments || []

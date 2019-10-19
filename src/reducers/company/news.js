@@ -3,8 +3,8 @@ import {
   LOAD_COMPANY_NEWS,
   LOAD_COMPANY_NEWS_SUCCESS,
   LOAD_COMPANY_NEWS_FAILURE
-} from '../actions';
-import { setLoadingProps, setLoadingSuccessProps, setLoadingErrorProps } from './helpers';
+} from 'actions';
+import { setLoadingProps, setLoadingSuccessProps, setLoadingErrorProps } from '../helpers';
 
 const initialState = {
   data: {},

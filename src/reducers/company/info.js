@@ -2,9 +2,9 @@ import {
   LOAD_COMPANY_INFO,
   LOAD_COMPANY_INFO_SUCCESS,
   LOAD_COMPANY_INFO_FAILURE
-} from '../actions';
+} from 'actions';
 import produce from 'immer';
-import { setLoadingProps, setLoadingSuccessProps, setLoadingErrorProps } from './helpers';
+import { setLoadingProps, setLoadingSuccessProps, setLoadingErrorProps } from '../helpers';
 
 const initialState = {
   data: {},

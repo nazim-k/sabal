@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { setLoadingProps, setLoadingSuccessProps, setLoadingErrorProps } from './helpers';
+import { setLoadingProps, setLoadingSuccessProps, setLoadingErrorProps } from '../helpers';
 import {
   LOAD_COMPANIES,
   LOAD_COMPANIES_SUCCESS,

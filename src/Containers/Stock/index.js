@@ -1,4 +1,4 @@
-import { createSelector } from "reselect/lib/index";
+import { createSelector } from "reselect";
 import { connect } from "react-redux";
 import { stockActionCreators } from "actionCreators";
 import { Stock } from 'Components';
