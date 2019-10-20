@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { createSelector } from "reselect";
-import { companiesActionCreators } from "actionCreators";
-import { connect } from "react-redux";
+import { createSelector } from 'reselect';
+import { companiesActionCreators } from 'actionCreators';
+import { connect } from 'react-redux';
 import { Companies } from 'Components';
 import { transformArrayOfObjectsToRows } from 'helpers';
 

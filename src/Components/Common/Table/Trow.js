@@ -21,4 +21,4 @@ Trow.propTypes = {
   onClick: PropTypes.func
 };
 
-export default React.memo( Trow );
+export default Trow;

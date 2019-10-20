@@ -8,7 +8,7 @@ import CONFIG from 'CONFIG';
 const { header } = CONFIG.table.compnaies;
 const { placeholder, icon, label, infoMsg } = CONFIG.search;
 
-function Search({ companies, links, query, setQuery, closeSearch, isLoading, failError }) {
+function Search({ companies, links, query, setQuery, toggleSearchVisibility, isLoading, failError }) {
   const searchInput = React.createRef();
 
   useEffect(() => {
@@ -50,7 +50,7 @@ function Search({ companies, links, query, setQuery, closeSearch, isLoading, fai
           rows={ companies }
           links={ links }
           isLoading={ isLoading }
-          onRowClick={ closeSearch }
+          onRowClick={ toggleSearchVisibility }
         />
       }
 
@@ -60,7 +60,7 @@ function Search({ companies, links, query, setQuery, closeSearch, isLoading, fai
       src="/icons/close.svg"
       alt="close"
       onClick={ () => {
-        closeSearch();
+        toggleSearchVisibility();
         setQuery('')
       }}
     />
@@ -82,7 +82,7 @@ Search.propTypes = {
   links: PropTypes.arrayOf(PropTypes.string).isRequired,
   query: PropTypes.string.isRequired,
   setQuery: PropTypes.func.isRequired,
-  closeSearch: PropTypes.func.isRequired,
+  toggleSearchVisibility: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   failError: PropTypes.oneOfType([
     PropTypes.oneOfType([

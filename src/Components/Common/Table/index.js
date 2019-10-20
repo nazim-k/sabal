@@ -1,6 +1,6 @@
 import React from 'react';
-import { ThemeProvider } from "styled-components";
-import { withRouter } from "react-router-dom";
+import { ThemeProvider } from 'styled-components';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Thead from './Thead';
 import Trow from './Trow';

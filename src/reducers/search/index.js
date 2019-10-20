@@ -3,14 +3,16 @@ import {
   SEARCH_COMPANIES,
   SEARCH_COMPANIES_SUCCESS,
   SEARCH_COMPANIES_FAILURE,
-  SEARCH_CLEAR_RESULTS
+  SEARCH_CLEAR_RESULTS,
+  TOGGLE_SEARCH_VISIBILITY
 } from 'actions';
 import { setLoadingProps, setLoadingSuccessProps, setLoadingErrorProps } from '../helpers'
 
 const initialState = {
   companies: [],
   isLoading: false,
-  failError: null
+  failError: null,
+  visibility: false
 };
 
 export default produce((state=initialState, action) => {
@@ -31,6 +33,9 @@ export default produce((state=initialState, action) => {
     case SEARCH_CLEAR_RESULTS:
       setLoadingSuccessProps(state, false);
       state.companies = [];
+      return state;
+    case TOGGLE_SEARCH_VISIBILITY:
+      state.visibility = !state.visibility;
       return state;
     default:
       return state;

@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { Skeleton, Table, ErrorMessage } from 'Components/Common';
 import { CompnanyLink } from './Styled';
 import { FlexBox, Title } from 'Components/StyledComponents';
@@ -30,8 +30,8 @@ function CardBody({ name, open, high, low, isLoading }) {
 }
 
 function Card(props) {
-
   const { ticker, error } = props;
+
   return <FlexBox as="section" wrapRow around center { ...style }>
     <CompnanyLink to={ `/companies/${ ticker }` }>
       {
@@ -81,4 +81,4 @@ Card.propTypes = {
   ])
 };
 
-export default memo( Card );
+export default Card;

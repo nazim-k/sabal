@@ -2,7 +2,8 @@ import {
   SEARCH_COMPANIES,
   SEARCH_COMPANIES_SUCCESS,
   SEARCH_COMPANIES_FAILURE,
-  SEARCH_CLEAR_RESULTS
+  SEARCH_CLEAR_RESULTS,
+  TOGGLE_SEARCH_VISIBILITY
 } from 'actions';
 
 const searchCompanies = () => ({ type: SEARCH_COMPANIES });
@@ -18,10 +19,12 @@ const searchCompaniesFailure = error => ({
 });
 
 const clearSearchResults = () => ({ type: SEARCH_CLEAR_RESULTS });
+const toggleSearchVisibility = () => ({ type: TOGGLE_SEARCH_VISIBILITY });
 
 export default {
   searchCompanies,
   searchCompaniesSuccess,
   searchCompaniesFailure,
-  clearSearchResults
+  clearSearchResults,
+  toggleSearchVisibility
 }

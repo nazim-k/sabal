@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 import CONFIG from 'CONFIG.js';
 
 const { fontSize, sideIndentation } = CONFIG.header;

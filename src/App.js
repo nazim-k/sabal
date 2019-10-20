@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom';
-import configureStore from './configureStore';
-import { Header, Company } from './Components';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import configureStore from 'configureStore';
+import { Header, Company } from 'Components';
 import { StockConainer, CompaniesContainer, SearchContainer } from 'Containers';
 import { preloadedState } from 'helpers'
 
@@ -19,12 +15,10 @@ const store = configureStore({
 
 function App() {
 
-  const [ searchVisibility, setSearchVisibility] = useState(false);
-
   return <Provider store={ store }>
     <Router>
 
-      <Header openSearch={ () => setSearchVisibility(true) }/>
+      <Header/>
 
       <Switch>
         <Route path="/companies/:company" component={ Company }/>
@@ -32,12 +26,7 @@ function App() {
         <Route path="/" component={ StockConainer }/>
       </Switch>
 
-      {
-        searchVisibility && <SearchContainer
-          closeSearch={ () => setSearchVisibility(false) }
-        />
-
-      }
+      <SearchContainer/>
 
     </Router>
   </Provider>

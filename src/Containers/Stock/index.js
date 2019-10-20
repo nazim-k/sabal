@@ -1,6 +1,6 @@
-import { createSelector } from "reselect";
-import { connect } from "react-redux";
-import { stockActionCreators } from "actionCreators";
+import { createSelector } from 'reselect';
+import { connect } from 'react-redux';
+import { stockActionCreators } from 'actionCreators';
 import { Stock } from 'Components';
 import CONFIG from 'CONFIG';
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { searchActionCreators } from 'actionCreators'
 import { Search } from 'Components';
-import { transformArrayOfObjectsToRows } from "helpers";
+import { transformArrayOfObjectsToRows } from 'helpers';
 import * as apiServer from 'apiServer';
 import CONFIG from 'CONFIG'
 
@@ -19,7 +19,7 @@ function useQuery() {
   return [ value, handleChange ]
 }
 
-function SearchContainer({ searchCompanies, searchCompaniesSuccess, searchCompaniesFailure, clearSearchResults, ...props }) {
+function SearchContainer({ visibility, searchCompanies, searchCompaniesSuccess, searchCompaniesFailure, clearSearchResults, ...props }) {
   const [ query, setQuery ] = useQuery();
 
   useEffect(() => {
@@ -46,11 +46,16 @@ function SearchContainer({ searchCompanies, searchCompaniesSuccess, searchCompan
     clearSearchResults();
   }, [ query, searchCompanies, searchCompaniesSuccess, searchCompaniesFailure, clearSearchResults ]);
 
-  return <Search { ...props } query={ query } setQuery={ setQuery }/>
-
+  if (visibility) return <Search { ...props } query={ query } setQuery={ setQuery }/>;
+  return null
 }
 
+SearchContainer.defaultProps = {
+  visibility: false
+};
+
 SearchContainer.propTypes = {
+  visibility: PropTypes.bool.isRequired,
   searchCompanies: PropTypes.func.isRequired,
   searchCompaniesSuccess: PropTypes.func.isRequired,
   searchCompaniesFailure: PropTypes.func.isRequired,
@@ -73,13 +78,14 @@ const getCompanies = createSelector(
 
 export default connect(
   ({ search }) => {
-    const { isLoading, failError } = search;
+    const { isLoading, failError, visibility } = search;
     const { result, links } = getCompanies(search);
     return {
       companies: result,
       links,
       isLoading,
-      failError
+      failError,
+      visibility
     }
   },
   searchActionCreators
