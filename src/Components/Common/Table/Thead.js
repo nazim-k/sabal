@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyledTd } from './Styled';
 
-export default function Thead({ header }) {
+function Thead({ header }) {
 
   if (!header) return null;
 
@@ -26,3 +26,5 @@ Thead.propTypes = {
     PropTypes.oneOf([null, undefined])
   ])
 };
+
+export default Thead

@@ -10,21 +10,6 @@ import CONFIG from 'CONFIG'
 
 const { debouncePause } = CONFIG;
 
-const companiesData = ({ companies }) => companies;
-const getCompanies = createSelector(
-  [ companiesData ],
-  companiesData => {
-    //Because the array is frozen in strict mode, we need to copy the array before sorting it
-    const companies = companiesData.slice().sort((a, b) => {
-      if (a.name > b.name) return 1;
-      if (a.name < b.name) return -1;
-      return 0;
-    });
-
-    return transformArrayOfObjectsToRows(companies);
-  }
-);
-
 function useQuery() {
   const [ value, setValue ] = useState('');
   const handleChange = e => {
@@ -72,12 +57,26 @@ SearchContainer.propTypes = {
   clearSearchResults: PropTypes.func.isRequired,
 };
 
+const getCompanies = createSelector(
+  search => search.companies,
+  companiesData => {
+    //Because the array is frozen in strict mode, we need to copy the array before sorting it
+    const companies = companiesData.slice().sort((a, b) => {
+      if (a.name > b.name) return 1;
+      if (a.name < b.name) return -1;
+      return 0;
+    });
+
+    return transformArrayOfObjectsToRows(companies);
+  }
+);
+
 export default connect(
   ({ search }) => {
     const { isLoading, failError } = search;
-    const { result: companies, links } = getCompanies(search);
+    const { result, links } = getCompanies(search);
     return {
-      companies,
+      companies: result,
       links,
       isLoading,
       failError

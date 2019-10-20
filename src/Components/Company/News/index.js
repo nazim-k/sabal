@@ -32,24 +32,7 @@ function News({ news, handleScroll, isLoading, failError }) {
       { isLoading && <Spinner/> }
 
     </StickyDivision>
-
   )
-
-  // return (
-  //   <StickyDivision>
-  //     <OverflowDivision as="section" onScroll={ handleScroll } padding="0 20px 25px">
-  //       <Title>All Related News</Title>
-  //       {/* Show message if there is no loading and no news*/}
-  //       { !isLoading && !news.length && <Paragraph center>No Related News</Paragraph> }
-  //
-  //       <RelatedNews news={ news }/>
-  //       { failError && <ErrorMessage error={ failError } center/> }
-  //       { isLoading && <Spinner/> }
-  //
-  //     </OverflowDivision>
-  //   </StickyDivision>
-  //
-  // )
 
 }
 

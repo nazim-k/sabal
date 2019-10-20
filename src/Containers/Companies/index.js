@@ -8,11 +8,7 @@ import { transformArrayOfObjectsToRows } from 'helpers';
 
 function CompaniesContainer(props) {
 
-  const {
-    loadAllCompanies,
-    shouldLoadAllCompanies,
-    ...restProps
-  } = props;
+  const { loadAllCompanies, shouldLoadAllCompanies, ...restProps } = props;
 
   useEffect(() => {
     if (shouldLoadAllCompanies)
@@ -32,19 +28,14 @@ CompaniesContainer.propTypes = {
   loadAllCompanies: PropTypes.func.isRequired,
 };
 
-const getCurrentPageData = ({ data, currentPageIndex }) => ({ data, currentPageIndex });
 const getCompaniesAndLinks = createSelector(
-  [ getCurrentPageData ],
-  ({ data, currentPageIndex }) => {
-    const companies = data[currentPageIndex]
-      //Because the array is frozen in strict mode, we need to copy the array before sorting it
-      ? data[currentPageIndex].slice().sort((a, b) => {
-        if (a.name > b.name) return 1;
-        if (a.name < b.name) return -1;
-        return 0;
-      })
-      : [];
-
+  companies => companies.data[companies.currentPageIndex] || [],
+  data => {
+    const companies = data.slice().sort((a, b) => {
+      if (a.name > b.name) return 1;
+      if (a.name < b.name) return -1;
+      return 0;
+    });
     return transformArrayOfObjectsToRows(companies);
   }
 );

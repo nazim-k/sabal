@@ -29,7 +29,7 @@ export default {
   },
 
   stock: {
-    title: 'stock Prices',
+    title: 'Stock Prices',
     card: {
       style: {
         bg: '#fff', // background-color

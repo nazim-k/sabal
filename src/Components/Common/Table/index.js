@@ -29,6 +29,7 @@ function Table({ header, rows, links, onRowClick, history, isLoading, dark, padd
     if (onRowClick) onRowClick(); // Addition functionality  on row click
   }
 
+
   if (isLoading) return rows.map( (row, index) => (
     <Skeleton key={ index } { ...props } />
   ));
@@ -70,4 +71,4 @@ Table.propTypes = {
   padding: PropTypes.string
 };
 
-export default withRouter(Table);
+export default withRouter( Table );

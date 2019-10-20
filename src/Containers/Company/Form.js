@@ -27,6 +27,7 @@ function FormContainer({ addComment, ticker }) {
       username: username.value,
       comment: comment.value
     });
+    // Clear form fields
     username.onChange('');
     comment.onChange('');
 

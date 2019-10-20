@@ -10,6 +10,7 @@ function CompanyInfo({ company, summary, details, isLoading, failError }) {
 
   if (failError) return <ErrorMessage error={ failError } center/>;
 
+
   return <FlexBox as="section" height="auto" padding="0 20px" center>
     <Title>{ title }</Title>
     <Table
@@ -59,4 +60,4 @@ CompanyInfo.propTypes = {
   ])
 };
 
-export default CompanyInfo
+export default CompanyInfo;
