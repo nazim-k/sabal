@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { createSelector } from 'reselect';
 import { connect } from 'react-redux';
 import News from 'Components/Company/News';
 import { companyActionCreators } from 'actionCreators';
@@ -20,23 +21,22 @@ function NewsContainer({ loadCompanyNews, nextPage, ticker, ...props }) {
   return <News { ...props } handleScroll={ handleScroll }/>
 }
 
-NewsContainer.defaultProps = {
-  ticker: ''
-};
-
 NewsContainer.propTypes = {
   ticker: PropTypes.string.isRequired,
   loadCompanyNews: PropTypes.func.isRequired,
 };
 
+const getNews = createSelector(
+  (state, ownProps) => state.company.news.data[ ownProps.ticker ] || [],
+  news => news
+);
+
 export default connect(
   (state, ownProps) => {
-    const { ticker } = ownProps;
-    const { isLoading, failError, data, nextPage } = state.company.news;
-    const news = data[ticker] || [];
+    const { nexPage, isLoading, failError } = state.company.news;
     return {
-      news,
-      nextPage,
+      news: getNews(state, ownProps),
+      nexPage,
       isLoading,
       failError
     }

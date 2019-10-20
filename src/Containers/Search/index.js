@@ -4,26 +4,11 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { searchActionCreators } from 'actionCreators'
 import { Search } from 'Components';
-import { transformArrayOfObjectsToRows } from "helpers";
+import { transformArrayOfObjectsToRows } from 'helpers';
 import * as apiServer from 'apiServer';
 import CONFIG from 'CONFIG'
 
 const { debouncePause } = CONFIG;
-
-const companiesData = ({ companies }) => companies;
-const getCompanies = createSelector(
-  [ companiesData ],
-  companiesData => {
-    //Because the array is frozen in strict mode, we need to copy the array before sorting it
-    const companies = companiesData.slice().sort((a, b) => {
-      if (a.name > b.name) return 1;
-      if (a.name < b.name) return -1;
-      return 0;
-    });
-
-    return transformArrayOfObjectsToRows(companies);
-  }
-);
 
 function useQuery() {
   const [ value, setValue ] = useState('');
@@ -34,7 +19,7 @@ function useQuery() {
   return [ value, handleChange ]
 }
 
-function SearchContainer({ searchCompanies, searchCompaniesSuccess, searchCompaniesFailure, clearSearchResults, ...props }) {
+function SearchContainer({ visibility, searchCompanies, searchCompaniesSuccess, searchCompaniesFailure, clearSearchResults, ...props }) {
   const [ query, setQuery ] = useQuery();
 
   useEffect(() => {
@@ -61,26 +46,46 @@ function SearchContainer({ searchCompanies, searchCompaniesSuccess, searchCompan
     clearSearchResults();
   }, [ query, searchCompanies, searchCompaniesSuccess, searchCompaniesFailure, clearSearchResults ]);
 
-  return <Search { ...props } query={ query } setQuery={ setQuery }/>
-
+  if (visibility) return <Search { ...props } query={ query } setQuery={ setQuery }/>;
+  return null
 }
 
+SearchContainer.defaultProps = {
+  visibility: false
+};
+
 SearchContainer.propTypes = {
+  visibility: PropTypes.bool.isRequired,
   searchCompanies: PropTypes.func.isRequired,
   searchCompaniesSuccess: PropTypes.func.isRequired,
   searchCompaniesFailure: PropTypes.func.isRequired,
   clearSearchResults: PropTypes.func.isRequired,
 };
 
+const getCompanies = createSelector(
+  search => search.companies,
+  companiesData => {
+    //Because the array is frozen in strict mode, we need to copy the array before sorting it
+    const companies = companiesData.slice().sort((a, b) => {
+      if (a.name > b.name) return 1;
+      if (a.name < b.name) return -1;
+      return 0;
+    });
+
+    return transformArrayOfObjectsToRows(companies);
+  }
+);
+
 export default connect(
   ({ search }) => {
-    const { isLoading, failError } = search;
-    const { result: companies, links } = getCompanies(search);
+    const { isLoading, failError, visibility } = search;
+    const { result, links } = getCompanies(search);
     return {
-      companies,
+      companies: result,
       links,
       isLoading,
-      failError
+      failError,
+      visibility
     }
   },
   searchActionCreators

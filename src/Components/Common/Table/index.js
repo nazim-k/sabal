@@ -1,6 +1,6 @@
 import React from 'react';
-import { ThemeProvider } from "styled-components";
-import { withRouter } from "react-router-dom";
+import { ThemeProvider } from 'styled-components';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Thead from './Thead';
 import Trow from './Trow';
@@ -28,6 +28,7 @@ function Table({ header, rows, links, onRowClick, history, isLoading, dark, padd
     if (links) history.push(`/companies/${ticker}`);
     if (onRowClick) onRowClick(); // Addition functionality  on row click
   }
+
 
   if (isLoading) return rows.map( (row, index) => (
     <Skeleton key={ index } { ...props } />
@@ -70,4 +71,4 @@ Table.propTypes = {
   padding: PropTypes.string
 };
 
-export default withRouter(Table);
+export default withRouter( Table );

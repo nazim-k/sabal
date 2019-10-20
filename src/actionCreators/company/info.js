@@ -3,7 +3,7 @@ import {
   LOAD_COMPANY_INFO_SUCCESS,
   LOAD_COMPANY_INFO_FAILURE
 } from 'actions';
-import * as apiServer from "apiServer";
+import * as apiServer from 'apiServer';
 import CONFIG from 'CONFIG';
 
 const updateFrequency = CONFIG.company.info.updateFrequency*60*60;

@@ -1,5 +1,5 @@
-import { api_key } from "API_KEY";
-import axios from "axios";
+import { api_key } from 'API_KEY';
+import axios from 'axios';
 
 // stock request helpers
 const transormStockResponse = data => {

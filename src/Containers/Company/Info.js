@@ -6,20 +6,6 @@ import { createSelector } from 'reselect';
 import { extractRowsFromObject } from 'helpers';
 import CompanyInfo from 'Components/Company/Info';
 
-const companyData = (companyInfo, company) => companyInfo.data[company] || {};
-const getCompany = createSelector(
-  [ companyData ],
-  companyData => {
-    const company = extractRowsFromObject(companyData);
-    const { short_description, long_description } = companyData;
-    return {
-      company,
-      summary: short_description,
-      details: long_description
-    }
-  }
-);
-
 function InfoContainer({ loadCompanyInfo, ticker, ...props }) {
 
   useEffect(() => {
@@ -39,13 +25,24 @@ InfoContainer.propTypes = {
   loadCompanyInfo: PropTypes.func.isRequired
 };
 
+const getCompanyInfo =createSelector(
+  (state, ownProps) => state.company.info.data[ ownProps.ticker ] || {},
+  data => {
+    const company = extractRowsFromObject(data);
+    const { short_description, long_description } = data;
+    return {
+      company,
+      summary: short_description,
+      details: long_description,
+    }
+  }
+);
+
 export default connect(
   (state, ownProps) => {
-    const { info } = state.company;
+    const { isLoading, failError } = state.company.info;
     const { ticker } = ownProps;
-    const { isLoading, failError } = info;
-    const { company, summary, details } = getCompany(info, ticker);
-
+    const { company, summary, details } = getCompanyInfo(state, ownProps);
     return {
       ticker,
       company,

@@ -59,4 +59,4 @@ CompanyInfo.propTypes = {
   ])
 };
 
-export default CompanyInfo
+export default CompanyInfo;

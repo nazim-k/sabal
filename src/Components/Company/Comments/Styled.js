@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Dd = styled.dd`
  margin: 0 0 10px;

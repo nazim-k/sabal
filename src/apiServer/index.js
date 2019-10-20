@@ -1,6 +1,6 @@
 import { axiosStockReques } from './helpers';
-import { api_key } from "API_KEY";
-import axios from "axios";
+import { api_key } from 'API_KEY';
+import axios from 'axios';
 import CONFIG from 'CONFIG';
 
 export const getStockPricesByTicker =  async tickers => {

@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 import { OverflowDivision } from 'Components/StyledComponents'
 
 export const NewsRow = styled.a`

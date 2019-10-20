@@ -12,7 +12,6 @@ const loadAllCompanies = () => (dispatch, getState) => {
   const { nextPage } = getState;
 
   dispatch({ type: LOAD_COMPANIES });
-  //TODO if data.length !== 0 && there is no next page don't getAllCompanies
   apiServer.getAllCompanies(nextPage)
     .then(
       ({ data, nextPage }) => {

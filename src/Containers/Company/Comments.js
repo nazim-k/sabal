@@ -3,18 +3,14 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import Comments from 'Components/Company/Comments';
 
-const getCommentsByTicker = (state, ticker) => state.company.comments[ticker];
 const getComments = createSelector(
-  [ getCommentsByTicker ],
+  (state, ownProps) => state.company.comments[ ownProps.ticker ],
   comments => comments || []
 );
 const CommentsContainer = ({ comments }) => <Comments comments={ comments }/>;
 
 export default connect(
-  (state, ownProps) => {
-    const { ticker } = ownProps;
-    return {
-      comments: getComments(state, ticker),
-    }
-  }
+  (state, ownProps) => ({
+    comments: getComments(state, ownProps)
+  })
 )(CommentsContainer)
